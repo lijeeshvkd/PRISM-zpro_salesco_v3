@@ -1,0 +1,14 @@
+<mvc:View
+    controllerName="zpj.pro.sk.sd.salesco.zprosalesco.controller.App"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+>
+    <!-- <f:ShellBar
+        title="Sales Co-ordinator"
+        homeIcon="/css/johnson_img.png"
+    /> -->
+    <App id="id.App" />
+</mvc:View>

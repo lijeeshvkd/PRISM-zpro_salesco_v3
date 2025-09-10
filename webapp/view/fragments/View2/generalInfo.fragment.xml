@@ -1,0 +1,336 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+>
+    <form:SimpleForm
+        id="idV2SF_GenInfo"
+        editable="true"
+        layout="ResponsiveGridLayout"
+        labelSpanXL="4"
+        labelSpanL="4"
+        labelSpanM="4"
+        labelSpanS="12"
+        adjustLabelSpan="false"
+        emptySpanXL="0"
+        emptySpanL="0"
+        emptySpanM="0"
+        emptySpanS="0"
+        columnsXL="3"
+        columnsL="2"
+        columnsM="2"
+        singleContainerFullSize="false"
+    >
+        <form:content>
+            <core:Title id="idV2T1" />
+            <Label
+                id="idV2LblCustCode"
+                text="{i18nV2>view2.simpleForm.label.custCode}"
+                required="true"
+            />
+
+            <Input
+                id="idV2InpCustCode"
+                value="{JSONModelPayload>/Kunnr}"
+                valueStateText="Enter {i18nV2>view2.simpleForm.label.custCode}"
+                showValueHelp="true"
+                valueHelpRequest="onCustomerCodeHelp"
+                class="sapUiSmallMarginEnd"
+                placeholder="{i18nV2>view2.simpleForm.label.custCode}"
+                editable="{GlobalModel>/Editable}"
+                textFormatMode="ValueKey"
+                showSuggestion="true"
+                showTableSuggestionValueHelp="false"
+                suggest=".onSuggest_custCode"
+                suggestionRows="{JSONModelForSuggest_custCode>/}"
+                suggestionItemSelected="onCustomerCodeInputSuggestionSelect"
+                submit="onCustomerCodeInputSubmit"
+                change="onCustomerCodeInputChange"
+                liveChange="onCustomerCodeLiveChange"
+            >
+                <suggestionColumns>
+                    <Column
+                        popinDisplay="Inline"
+                        demandPopin="true"
+                    >
+                        <Label text="Customer Code" />
+                    </Column>
+                    <Column
+                        popinDisplay="Inline"
+                        demandPopin="true"
+                    >
+                        <Label text="Customer Name" />
+                    </Column>
+
+                    <!-- <core:Item
+                        text="{JSONModelForSuggest_custCode>DomvalueL}"
+                        key="{JSONModelForSuggest_custCode>Ddtext}"
+                    /> -->
+                </suggestionColumns>
+                <suggestionRows>
+                    <ColumnListItem>
+                        <Label
+                            text="{JSONModelForSuggest_custCode>DomvalueL}"
+                        />
+                        <Label text="{JSONModelForSuggest_custCode>Ddtext}" />
+                    </ColumnListItem>
+                </suggestionRows>
+            </Input>
+            <Label
+                id="idV2LblCustName"
+                text="{i18nV2>view2.simpleForm.label.custName}"
+            />
+            <Input
+                value="{JSONModelPayload>/Name}"
+                id="idV2InpCustName"
+                editable="false"
+            />
+            <Label
+                id="idV2LblDistChnl"
+                text="{i18nV2>view2.simpleForm.label.distChnl}"
+                required="true"
+            />
+            <Select
+                id="idV2SLDistChannel"
+                forceSelection="false"
+                items="{LocalJSONModels>/distributonChannel}"
+                selectedKey="{JSONModelPayload>/Vtweg}"
+                valueStateText="Select {i18nV2>view2.simpleForm.label.distChnl}"
+                editable="{GlobalModel>/Editable}"
+                change="onDistributionChannelChange"
+            >
+                <core:Item
+                    id="idV2SLItemDistChannel"
+                    key="{LocalJSONModels>key}"
+                    text="{LocalJSONModels>text}"
+                />
+            </Select>
+            <Label
+                id="idV2LblPayTerm"
+                text="{i18nV2>view2.simpleForm.label.payTerm}"
+            />
+            <!-- <Select
+                id="idV2SLPaymentTerm"
+                forceSelection="false"
+                items="{LocalJSONModels>/paymentTerms}"
+                selectedKey="{JSONModelPayload>/Zterm}"
+                valueStateText="Select {i18nV2>view2.simpleForm.label.payTerm}"
+                editable="{GlobalModel>/Editable}"
+                change="onPaymentTermsSelectChange"
+            >
+                <core:Item
+                    id="idV2SLItemPayTerm"
+                    key="{LocalJSONModels>key}"
+                    text="{LocalJSONModels>text}"
+                />
+            </Select> -->
+            <!-- editable="{GlobalModel>/Editable}" -->
+            <Select
+                id="idV2SLPaymentTerm"
+                forceSelection="false"
+                items="{path:'/ET_VALUE_HELPSSet',
+            
+        filters : [
+            { path : 'Domname', operator : 'EQ', value1 : 'TVZBT'},
+            { path : 'Domname1', operator : 'EQ', value1 : ''},
+            { path : 'Domname2', operator : 'EQ', value1 : ''}
+        ]}"
+                selectedKey="{JSONModelPayload>/Zterm}"
+                valueStateText="Select {i18nV2>view2.simpleForm.label.payTerm}"
+                editable="{GlobalEditableModel>/Editable}"
+                change="onPaymentTermsSelectChange"
+            >
+                <core:Item
+                    id="idV2SLItemPayTerm"
+                    key="{DomvalueL}"
+                    text="{DomvalueL}-{Ddtext}"
+                />
+            </Select>
+
+            <Label
+                id="idV2LblValidity"
+                text="{i18nV2>view2.simpleForm.label.validity}"
+                required="true"
+            />
+            <Input
+                id="idV2InpValidity"
+                placeholder="{i18nV2>view2.simpleForm.label.validity}"
+                valueStateText="Enter {i18nV2>view2.simpleForm.label.validity}"
+                maxLength="3"
+                value="{path:'JSONModelPayload>/Validity'}"
+                editable="{GlobalModel>/Editable}"
+                liveChange="onValidityNumber"
+            />
+
+            <!-- Start: Newfields001, Mandatefields001 -->
+            <Label
+                text="{i18nV2>view2.simpleForm.label.Oppurtunity}"
+                required="{GlobalModel>/Required}"
+            />
+            
+            <Input
+                value="{JSONModelPayload>/Oppu}" 
+                maxLength="25"
+              editable="{GlobalModel>/Editable}"
+            />
+
+            <Label text="{i18nV2>view2.simpleForm.label.Specifier}" />
+            <Input
+                value="{JSONModelPayload>/Specid}"
+                maxLength="10"
+                editable="{GlobalModel>/Editable}"
+            />
+            <!-- Start: pending001 -->
+            <Label
+                text="{i18nV2>view2.simpleForm.label.Pending}"
+                visible="{GlobalModel>/Pending}"
+            />
+            <Input
+                value="{JSONModelPayload>/Role}"
+                maxLength="10"
+                editable="{GlobalModel>/Editable}"
+                visible="{GlobalModel>/Pending}"
+            />
+            <!-- End: pending001 -->
+            <!-- <Label
+                id="idV2LblValidDay"
+                text="{i18nV2>view2.simpleForm.label.validDays}"
+            />
+            <Input
+                id="idV2InpValidDays"
+                placeholder="{i18nV2>view2.simpleForm.label.validDays}"
+                valueStateText="Enter {i18nV2>view2.simpleForm.label.validDays}"
+             
+            /> -->
+
+            <core:Title id="idV2T2" />
+            <Label
+                id="idV2LblOrdNo"
+                text="{i18nV2>view2.simpleForm.label.ordNo}"
+                required="{GlobalModel>/Required}"
+            />
+            <Input
+                id="idV2InpOrderNo"
+                placeholder="{i18nV2>view2.simpleForm.label.ordNo}"
+                valueStateText="Enter {i18nV2>view2.simpleForm.label.ordNo}"
+                value="{JSONModelPayload>/Aufnr}"
+                editable="{GlobalModel>/Editable}"
+                liveChange="onLiveChange"
+            />
+            <!-- End: Newfields001, Mandatefields001 -->
+            <Label
+                id="idV2LblSalOffice"
+                text="{i18nV2>view2.simpleForm.label.salOffice}"
+                required="true"
+            />
+
+            <Input
+                id="idV2InpSalesOffice"
+                showValueHelp="true"
+                valueHelpRequest="onSalesOfficeHelp"
+                class="sapUiSmallMarginEnd"
+                placeholder="{i18nV2>view2.simpleForm.label.salOffice}"
+                valueStateText="Enter {i18nV2>view2.simpleForm.label.salOffice}"
+                value="{parts: ['JSONModelPayload>/Soname','JSONModelPayload>/Vkbur'], formatter:'sap.formatter.showSalesOffice'}"
+                editable="{GlobalModel>/Editable}"
+                showSuggestion="true"
+                suggest=".onSuggest_salesOffice"
+                suggestionItems="{JSONModelForSuggest>/}"
+                submit="onSalesOfficeInputSubmit"
+                liveChange="onSalesOfficeLiveChange"
+            >
+                <!-- submit="onSalesOfficeInputSubmit" -->
+                <suggestionItems>
+                    <core:Item text="{JSONModelForSuggest>DomvalueL}" />
+                </suggestionItems>
+            </Input>
+
+            <Label
+                id="idV2LblVertical"
+                text="{i18nV2>view2.simpleForm.label.vertical}"
+                required="true"
+            />
+            <Select
+                id="idV2SLVertical"
+                forceSelection="false"
+                items="{LocalJSONModels>/vertical}"
+                selectedKey="{JSONModelPayload>/Spart}"
+                valueStateText="Select {i18nV2>view2.simpleForm.label.vertical}"
+                editable="{GlobalModel>/Editable}"
+                change="onVerticalSelectChange"
+            >
+                <core:Item
+                    id="idV2SLItemVertical"
+                    key="{LocalJSONModels>key}"
+                    text="{LocalJSONModels>text}"
+                />
+            </Select>
+            <Label
+                id="idV2LblTranIns"
+                text="{i18nV2>view2.simpleForm.label.TranIns}"
+            />
+            <Input
+                id="idV2InpTransirInsurance"
+                editable="false"
+                valueStateText="Enter {i18nV2>view2.simpleForm.label.TranIns}"
+                value="{JSONModelPayload>/Ti}"
+            />
+            <Label
+                id="idV2LblGST"
+                text="{i18nV2>view2.simpleForm.label.gst}"
+            />
+            <Input
+                id="idV2InpGST"
+                editable="false"
+                value="{JSONModelPayload>/Gst}"
+            />
+            <Label
+                id="idV2LblEx"
+                text="{i18nV2>view2.simpleForm.label.ex}"
+                required="true"
+            />
+            <!--Start: Divya's changes -->
+            <!--Start: Newfields001, Mandatefields001 -->
+            <Label
+                text="{i18nV2>view2.simpleForm.label.projectnameaddress}"
+                required="{GlobalModel>/Required}"
+            />
+            <TextArea
+                value="{JSONModelPayload>/Proj}"
+                editable="{GlobalModel>/Editable}"
+            />
+            <!--End: Newfields001 -->
+            <!--End: Divya's changes -->
+
+            <!-- Start: Newfields001 -->
+            <Label text="{i18nV2>view2.simpleForm.label.ProjectSpecifier}" />
+            <!-- required="{GlobalModel>/Required}" -->
+            <TextArea
+                value="{JSONModelPayload>/Spec}"
+                editable="{GlobalModel>/Editable}"
+            />
+
+            <!-- End: Newfields001, Mandatefields001 -->
+
+            <!-- <RadioButtonGroup
+                id="idV2RBG"
+                columns="2"
+                valueState="None"
+                class="sapUiMediumMarginBottom"
+                select="onRadioButtonGroupSelect"
+                selectedIndex="{=${JSONModelPayload>/Isexdep}==='X'?${JSONModelPayload>/Isexdep}===''?-1:1:${JSONModelPayload>/Isexdep}===''?-1:0}"
+                editable="{GlobalModel>/Editable}"
+            > -->
+            <!-- Isexdep -->
+            <!-- <RadioButton
+                    id="idV2RBExFactory"
+                    text="{i18nV2>view2.simpleForm.radioButton.exFactory}"
+                />
+                <RadioButton
+                    id="idV2RBExDepot"
+                    text="{i18nV2>view2.simpleForm.radioButton.exDepot}"
+                /> -->
+            <!-- </RadioButtonGroup> -->
+        </form:content>
+    </form:SimpleForm>
+</core:FragmentDefinition>

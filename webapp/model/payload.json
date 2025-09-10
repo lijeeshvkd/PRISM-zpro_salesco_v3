@@ -1,0 +1,50 @@
+{
+  "header": {
+    "Pafvto": null,
+    "Kunnr": "",
+    "Pafvfrm": null,
+    "Ti": "1",
+    "Gst": "18",
+    "Name": "",
+    "Action": "",
+    "Zterm": "",
+    "Validity": "",
+    "Aufnr": "",
+    "Vtweg": "",
+    "Vkbur": "",
+    "Spart": "",
+    "ET_SALES_COORD_ISET": {
+      "results": []
+    }
+  },
+  "item": {
+    "Mfrgr": "",
+    "Szmm": "",
+    "Mvgr2": "",
+    "Werks": "",
+    "Prodh1": "",
+    "CurVolFt": "",
+    "TotalVol": "",
+    "Disc": null,
+    "Discb": null,
+    "Commbox": null,
+    "Exfacsqft": null,
+    "Exdepsqft": null,
+    "Commboxp": null,
+    "Frgtsqft": null,
+    "Compname": null,
+    "Complanprice": null,
+    "Sbremark": null,
+    "Zzprodh4": "",
+    "Mvgr5": "",
+    "Isexdep": ""
+  },
+
+  "count": {
+    "Total": "",
+    "onGoing": "",
+    "Approved": "",
+    "Rejected": "",
+    "Delayed": ""
+  }
+}
