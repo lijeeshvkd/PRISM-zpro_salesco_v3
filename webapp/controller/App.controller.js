@@ -1,2 +1,14 @@
-sap.ui.define(["sap/ui/core/mvc/Controller"],function(o){"use strict";return o.extend("zpj.pro.sk.sd.salesco.zprosalesco.controller.App",{onInit:function(){}})});
-//# sourceMappingURL=App.controller.js.map
+sap.ui.define(
+    [
+        "sap/ui/core/mvc/Controller"
+    ],
+    function(BaseController) {
+      "use strict";
+  
+      return BaseController.extend("zpj.pro.sk.sd.salesco.zprosalesco.controller.App", {
+        onInit: function() {
+        }
+      });
+    }
+  );
+  

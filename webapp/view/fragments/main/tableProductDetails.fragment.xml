@@ -20,6 +20,14 @@
                 text="{i18n.main>main.IconTabFilter.requests}"
                 key="All"
             />
+            <IconTabFilter
+                id="id.main.ITFZoho"
+                icon="sap-icon://mirrored-task-circle"
+                iconColor="Contrast"
+                count=""
+                text="{i18n.main>main.IconTabFilter.zoho}"
+                key="Zoho"
+            />
             <IconTabSeparator id="id.main.ICS" />
             <IconTabFilter
                 id="id.main.ITFOnGoing"
@@ -53,14 +61,6 @@
                 text="{i18n.main>main.IconTabFilter.delay}"
                 key="Delay"
             />
-            <IconTabFilter
-                id="id.main.ITFZoho"
-                icon="sap-icon://mirrored-task-circle"
-                iconColor="Contrast"
-                count=""
-                text="{i18n.main>main.IconTabFilter.zoho}"
-                key="Delay"
-            />
         </items>
         <content>
             <fb:FilterBar
@@ -69,8 +69,7 @@
                 useToolbar="false"
                 search=".onSearch"
                 showFilterConfiguration="false"
-                visible="{modelVisibleFlag>/Visible}"
-            >
+                visible="{modelVisibleFlag>/Visible}">
                 <fb:filterGroupItems>
                     <fb:FilterGroupItem
                         name="SalesOffice"
@@ -160,21 +159,21 @@
                             <!-- New -->
                             <DateRangeSelection
                                 value="{
-				'type': 'sap.ui.model.type.DateInterval',
-				'formatOptions': {
-					'pattern': 'dd/MM/YYYY'
-				},
-				'parts': [
-					{
-						'type': 'sap.ui.model.type.Date',
-						'path': 'dateRange>/start'
-					},
-					{
-						'type': 'sap.ui.model.type.Date',
-						'path': 'dateRange>/end'
-					}
-				]
-			}"
+                                        'type': 'sap.ui.model.type.DateInterval',
+                                        'formatOptions': {
+                                            'pattern': 'dd/MM/YYYY'
+                                        },
+                                        'parts': [
+                                            {
+                                                'type': 'sap.ui.model.type.Date',
+                                                'path': 'dateRange>/start'
+                                            },
+                                            {
+                                                'type': 'sap.ui.model.type.Date',
+                                                'path': 'dateRange>/end'
+                                            }
+                                        ]
+                                    }"
                             />
                             <!-- End: Date001 -->
                         </fb:control>
@@ -220,9 +219,9 @@
                                     </Column>
 
                                     <!-- <core:Item
-                        text="{JSONModelForSuggest_custCode>DomvalueL}"
-                        key="{JSONModelForSuggest_custCode>Ddtext}"
-                    /> -->
+                                        text="{JSONModelForSuggest_custCode>DomvalueL}"
+                                        key="{JSONModelForSuggest_custCode>Ddtext}"
+                                    /> -->
                                 </suggestionColumns>
                                 <suggestionRows>
                                     <ColumnListItem>
@@ -270,32 +269,32 @@
                 </fb:filterGroupItems>
 
                 <!-- <fb:FilterGroupItem>
-             <fb:FilterGroupItem
-                        name="Vertical"
-                        label="{i18nV2>view2.simpleForm.label.vertical}"
-                        groupName="Group1"
-                        visibleInFilterBar="true"
-                    >
-                    <fb:control>
-            <Select
-                id="idV2SLVertical"
-                forceSelection="false"
-                items="{LocalJSONModels>/vertical}"
-                selectedKey="{JSONModelPayload>/Spart}"
-                valueStateText="Select {i18nV2>view2.simpleForm.label.vertical}"
-                editable="{GlobalModel>/Editable}"
-                change="onVerticalSelectChange"
-            >
-                <core:Item
-                    id="idV2SLItemVertical"
-                    key="{LocalJSONModels>key}"
-                    text="{LocalJSONModels>text}"
-                />
-            </Select>
-             </fb:control>
-            </fb:FilterGroupItem>
-             </fb:filterGroupItems>
-              -->
+                <fb:FilterGroupItem
+                            name="Vertical"
+                            label="{i18nV2>view2.simpleForm.label.vertical}"
+                            groupName="Group1"
+                            visibleInFilterBar="true"
+                        >
+                        <fb:control>
+                <Select
+                    id="idV2SLVertical"
+                    forceSelection="false"
+                    items="{LocalJSONModels>/vertical}"
+                    selectedKey="{JSONModelPayload>/Spart}"
+                    valueStateText="Select {i18nV2>view2.simpleForm.label.vertical}"
+                    editable="{GlobalModel>/Editable}"
+                    change="onVerticalSelectChange"
+                >
+                    <core:Item
+                        id="idV2SLItemVertical"
+                        key="{LocalJSONModels>key}"
+                        text="{LocalJSONModels>text}"
+                    />
+                </Select>
+                </fb:control>
+                </fb:FilterGroupItem>
+                </fb:filterGroupItems>
+                -->
             </fb:FilterBar>
 
             <!-- Start: tableSort001 -->
@@ -308,8 +307,7 @@
                 headerText="{i18n.main>main.table.headerText}"
                 items="{ModelForTable>/}"
                 sticky="ColumnHeaders,HeaderToolbar"
-                visible="false"
-            >
+                visible="false" >
                 <headerToolbar>
                     <OverflowToolbar
                         id="id.main.TblOT"
@@ -552,244 +550,126 @@
                     </ColumnListItem>
                 </items>
             </Table>
+
             <!-- New -->
-            <Table:Table
-                id="table"
+            <Table:Table id="table"
                 selectionMode="{oGlobleModel>/rowMode}"
                 rows="{ModelForTable>/}"
                 ariaLabelledBy="title"
                 rowSelectionChange="onClickofItem"
-                selectionBehavior="{oGlobleModel>/selBehavior}"
-            >
+                selectionBehavior="{oGlobleModel>/selBehavior}" >
                 <Table:extension>
-                    <OverflowToolbar
-                        design="Transparent"
-                        width="100%"
-                    >
+                    <OverflowToolbar design="Transparent" width="100%">
                         <content>
-                            <Title
-                                text="{i18n.main>main.table.title}"
-                                level="H2"
-                            />
+                            <Title text="{i18n.main>main.table.title}" level="H2" />
 
                             <ToolbarSpacer />
-                            <Input
-                                placeholder="Search PAF No"
-                                submit="onOrderNumber"
-                                liveChange="onOrderNumber"
-                                width="15%"
-                            >
+                            <Input placeholder="Search PAF No" submit="onOrderNumber" liveChange="onOrderNumber" width="15%" >
                                 <layoutData>
-                                    <OverflowToolbarLayoutData
-                                        priority="NeverOverflow"
-                                    />
+                                    <OverflowToolbarLayoutData priority="NeverOverflow" />
                                 </layoutData>
                             </Input>
-                            <Button
-                                text="Add New"
-                                icon="sap-icon://add"
-                                type="Accept"
-                                press="onNewPress"
-                            />
-                            <Button
-                                text="Delete"
-                                icon="sap-icon://delete"
-                                press="_onDelete"
-                                type="Reject"
-                                visible="{oGlobleModel>/deleteButton}"
-                            />
+                            <Button text="Add New" icon="sap-icon://add" type="Accept" press="onNewPress" />
+                            <Button text="Delete" icon="sap-icon://delete" press="_onDelete" type="Reject" visible="{oGlobleModel>/deleteButton}" />
                         </content>
                     </OverflowToolbar>
                 </Table:extension>
+
                 <Table:columns>
-                    <Table:Column
-                        id="Pafno"
-                        sortProperty="Pafno"
-                    >
-                        <Label
-                            text="{i18n.main>main.table.column.text.ordNo}"
-                            wrapping="true"
-                        />
+                    <Table:Column id="Pafno" sortProperty="Pafno" >
+                        <Label text="{i18n.main>main.table.column.text.ordNo}" wrapping="true" />
                         <Table:template>
-                            <Text
-                                text="{path:'ModelForTable>Pafno',  formatter:'sap.formatter.removeLeadingZeros'}"
-                                wrapping="false"
-                            />
+                            <Text text="{path:'ModelForTable>Pafno',  formatter:'sap.formatter.removeLeadingZeros'}" wrapping="false" />
                         </Table:template>
                     </Table:Column>
-                    <Table:Column
-                        id="Soname"
-                        sortProperty="Soname"
-                         width="8rem"
-                    >
-                        <Label
-                            text="{i18n.main>main.table.column.text.region}"
-                            wrapping="true"
-                        />
+
+                    <Table:Column id="Soname" sortProperty="Soname" width="8rem" >
+                        <Label text="{i18n.main>main.table.column.text.region}" wrapping="true" />
                         <Table:template>
-                            <Text
-                                text="{ModelForTable>Soname}({ModelForTable>Vkbur})"
-                                 
-                            />
+                            <Text text="{ModelForTable>Soname}({ModelForTable>Vkbur})" />
                         </Table:template>
                     </Table:Column>
-                    <Table:Column
-                        id="Name"
-                        sortProperty="Name"
-                        width="16rem"
-                    >
-                        <Label
-                            text="{i18n.main>main.table.column.text.customer}"
-                            wrapping="true"
-                        />
+
+                    <Table:Column id="Name" sortProperty="Name" width="16rem" >
+                        <Label text="{i18n.main>main.table.column.text.customer}" wrapping="true" />
                         <Table:template>
-                            <Text
-                                text="{ModelForTable>Name}"
-                                wrapping="true"
-                            />
+                            <Text text="{ModelForTable>Name}" wrapping="true" />
                         </Table:template>
                     </Table:Column>
-                    <!--  -->
-                    <Table:Column
-                        id="Kunnr"
-                        sortProperty="Kunnr"
-                    >
-                        <Label
-                            text="{i18n.main>main.table.column.text.custNo}"
-                            wrapping="true"
-                        />
+                   
+                    <Table:Column id="Kunnr" sortProperty="Kunnr" >
+                        <Label text="{i18n.main>main.table.column.text.custNo}" wrapping="true" />
                         <Table:template>
                             <Text text="{ModelForTable>Kunnr}" />
                         </Table:template>
                     </Table:Column>
-                    <Table:Column
-                        id="Spart"
-                        sortProperty="Spart"
-                    >
-                        <Label
-                            text="{i18n.main>main.table.column.text.vertical}"
-                            wrapping="true"
-                        />
+
+                    <Table:Column id="Spart" sortProperty="Spart" >
+                        <Label text="{i18n.main>main.table.column.text.vertical}" wrapping="true" />
                         <Table:template>
-                            <Text
-                                text="{path:'ModelForTable>Spart',  formatter:'sap.formatter.showVerticalText'}"
-                            />
+                            <Text text="{path:'ModelForTable>Spart',  formatter:'sap.formatter.showVerticalText'}" />
                         </Table:template>
                     </Table:Column>
-                    <Table:Column
-                        id="Vtweg"
-                        sortProperty="Vtweg"
-                    >
-                        <Label
-                            text="{i18n.main>main.table.column.text.typeOfOrder}"
-                            wrapping="true"
-                        />
+
+                    <Table:Column id="Vtweg" sortProperty="Vtweg" >
+                        <Label text="{i18n.main>main.table.column.text.typeOfOrder}" wrapping="true" />
                         <Table:template>
-                            <Text
-                                text="{path:'ModelForTable>Vtweg',  formatter:'sap.formatter.showOrderType'}"
-                            />
+                            <Text text="{path:'ModelForTable>Vtweg',  formatter:'sap.formatter.showOrderType'}" />
                         </Table:template>
                     </Table:Column>
-                    <Table:Column
-                        id="WtotalVol"
-                        sortProperty="WtotalVol"
-                    >
-                        <Label
-                            text="{i18n.main>main.table.column.text.totalOrder}"
-                            wrapping="true"
-                        />
+
+                    <Table:Column id="WtotalVol" sortProperty="WtotalVol" >
+                        <Label text="{i18n.main>main.table.column.text.totalOrder}" wrapping="true" />
                         <Table:template>
                             <Text text="{ModelForTable>WtotalVol}" />
                         </Table:template>
                     </Table:Column>
-                    <Table:Column
-                        id="WcurVolFt"
-                        sortProperty="WcurVolFt"
-                    >
-                        <Label
-                            text="{i18n.main>main.table.column.text.currentOrder}"
-                            wrapping="true"
-                        />
+
+                    <Table:Column id="WcurVolFt" sortProperty="WcurVolFt" >
+                        <Label text="{i18n.main>main.table.column.text.currentOrder}" wrapping="true" />
                         <Table:template>
                             <Text text="{ModelForTable>WcurVolFt}" />
                         </Table:template>
                     </Table:Column>
-                    <Table:Column
-                        id="Erdat"
-                        sortProperty="Erdat"
-                    >
-                        <Label
-                            text="{i18n.main>main.table.column.text.requestedDate}"
-                            wrapping="true"
-                        />
+
+                    <Table:Column id="Erdat" sortProperty="Erdat" >
+                        <Label text="{i18n.main>main.table.column.text.requestedDate}" wrapping="true" />
                         <Table:template>
-                            <Text
-                                text="{ parts: ['ModelForTable>Erdat'], formatter: 'sap.formatter.getFormattedDate' }"
-                            />
+                            <Text text="{ parts: ['ModelForTable>Erdat'], formatter: 'sap.formatter.getFormattedDate' }" />
                         </Table:template>
                     </Table:Column>
-                    <Table:Column
-                        id="Pendingat"
-                        sortProperty="Pendingat"
-                    >
-                        <Label
-                            text="{i18n.main>main.table.column.text.pending}"
-                            wrapping="true"
-                        />
+
+                    <Table:Column id="Pendingat" sortProperty="Pendingat">
+                        <Label text="{i18n.main>main.table.column.text.pending}" wrapping="true" />
                         <Table:template>
                             <Text text="{ModelForTable>Role}" />
                         </Table:template>
                     </Table:Column>
-                    <Table:Column
-                        id="Status"
-                        sortProperty="Status"
-                        width="6rem"
-                    >
-                        <Label
-                            text="{i18n.main>main.table.column.text.status}"
-                            wrapping="true"
-                        />
+
+                    <Table:Column id="Status" sortProperty="Status" width="6rem" >
+                        <Label text="{i18n.main>main.table.column.text.status}"  wrapping="true" />
                         <Table:template>
-                            <tnt:InfoLabel
-                                text="{ parts: ['ModelForTable>Status', 'ModelForTable>Erdat'], formatter: 'sap.formatter.getStatus' }"
-                                colorScheme="{ parts: ['ModelForTable>Status'], formatter: 'sap.formatter.getStatusColor' }"
-                            />
+                            <tnt:InfoLabel text="{ parts: ['ModelForTable>Status', 'ModelForTable>Erdat'], formatter: 'sap.formatter.getStatus' }"
+                                colorScheme="{ parts: ['ModelForTable>Status'], formatter: 'sap.formatter.getStatusColor' }" />
                         </Table:template>
                     </Table:Column>
 
-                     <Table:Column
-                        id="actalPrice"
-                        sortProperty="actualDis"
-                        width="6rem"
-                    >
-                        <Label
-                            text="{i18n.main>main.table.column.text.actualDis}"
-                            wrapping="true"
-                        />
+                     <Table:Column id="actalPrice" sortProperty="actualDis" width="6rem" >
+                        <Label text="{i18n.main>main.table.column.text.actualDis}" wrapping="true" />
                         <Table:template>
-                            <tnt:InfoLabel
-                                text="{ parts: ['ModelForTable>actualDis', 'ModelForTable>Erdat'], formatter: 'sap.formatter.getStatus' }"
-                                colorScheme="{ parts: ['ModelForTable>actualDis'], formatter: 'sap.formatter.getStatusColor' }"
-                            />
+                            <tnt:InfoLabel text="{ parts: ['ModelForTable>actualDis', 'ModelForTable>Erdat'], formatter: 'sap.formatter.getStatus' }"
+                                colorScheme="{ parts: ['ModelForTable>actualDis'], formatter: 'sap.formatter.getStatusColor' }" />
                         </Table:template>
                     </Table:Column>
 
-                     <Table:Column
-                        id="approvedDis"
-                        sortProperty="approveDis"
-                        width="6rem"
-                    >
-                        <Label
-                            text="{i18n.main>main.table.column.text.approveDis}"
-                            wrapping="true"
-                        />
+                     <Table:Column id="approvedDis" sortProperty="approveDis" width="6rem" >
+                        <Label text="{i18n.main>main.table.column.text.approveDis}" wrapping="true"/>
                         <Table:template>
-                            <tnt:InfoLabel
-                                text="{ parts: ['ModelForTable>approveDis', 'ModelForTable>Erdat'], formatter: 'sap.formatter.getStatus' }"
-                                colorScheme="{ parts: ['ModelForTable>approveDis'], formatter: 'sap.formatter.getStatusColor' }"
-                            />
+                            <tnt:InfoLabel text="{ parts: ['ModelForTable>approveDis', 'ModelForTable>Erdat'], formatter: 'sap.formatter.getStatus' }"
+                                colorScheme="{ parts: ['ModelForTable>approveDis'], formatter: 'sap.formatter.getStatusColor' }" />
                         </Table:template>
                     </Table:Column>
+
                 </Table:columns>
             </Table:Table>
             <!-- End: tableSort001 --> 

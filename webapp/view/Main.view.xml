@@ -8,125 +8,86 @@
     xmlns:card="sap.f.cards"
     xmlns:form="sap.ui.layout.form"
 >
-    <Page
-        id="id.Page.MainPage"
-        class="sapUiLargeMarginBottom"
-    >
+    <Page id="id.Page.MainPage" class="sapUiLargeMarginBottom" >
         <content>
             <FlexBox
                 id="idFlexBox"
                 wrap="Wrap"
                 justifyContent="Center"
-                visible="false"
-            >
-                <f:Card
-                    id="mainCardId"
-                    class="sapUiTinyMarginTop"
-                >
+                visible="false" >
+                <f:Card id="mainCardId" class="sapUiTinyMarginTop" >
                     <f:header>
-                        <card:Header
-                            class="cardHeader"
-                            title="Selection Screen"
-                            iconSrc="sap-icon://enter-more"
-                        />
+                        <card:Header class="cardHeader" title="Selection Screen" iconSrc="sap-icon://enter-more" />
                     </f:header>
                     <f:content>
-                        <form:SimpleForm
-                            editable="true"
-                            layout="ResponsiveGridLayout"
-                        >
+                        <form:SimpleForm editable="true" layout="ResponsiveGridLayout" >
                             <form:content>
                                 <Label />
-                                <Label
-                                    design="Bold"
-                                    text="Sales office"
-                                />
+
+                                <Label design="Bold" text="Sales office" />
                                 <Input
-                                    id="id.SalesOffice.Input"
+                                    id="id.SalesOffice.Input1"
                                     placeholder="Sales Office"
                                     showValueHelp="true"
                                     valueHelpRequest="onSalesOfficeHelp"
                                     showSuggestion="true"
                                     suggest=".onSuggest"
                                     suggestionItems="{JSONModelForSuggest>/}"
-                                    change="onSalesOfficeInputSubmit"
-                                >
+                                    change="onSalesOfficeInputSubmit" >
                                     <!-- submit="onSalesOfficeInputSubmit" -->
                                     <suggestionItems>
-                                        <core:Item
-                                            text="{JSONModelForSuggest>DomvalueL}"
-                                        />
+                                        <core:Item text="{JSONModelForSuggest>DomvalueL}" />
                                     </suggestionItems>
                                 </Input>
-                                <Label
-                                    design="Bold"
-                                    text="PAF No."
-                                />
+
+                                <Label design="Bold" text="PAF No." />
+                                <Input id="id.PafNo.Input2" placeholder="PAF No." />
+
+                                <Label id="idV2LblCustCode1" text="{i18nV2>view2.simpleForm.label.custCode}" required="true" />
                                 <Input
-                                    id="id.PafNo.Input"
-                                    placeholder="PAF No."
-                                />
-                                <Label
-                id="idV2LblCustCode"
-                text="{i18nV2>view2.simpleForm.label.custCode}"
-                required="true"
-            />
+                                    id="idV2InpCustCode1"
+                                    value="{JSONModelPayload>/Kunnr}"
+                                    valueStateText="Enter {i18nV2>view2.simpleForm.label.custCode}"
+                                    showValueHelp="true"
+                                    valueHelpRequest="onCustomerCodeHelp"
+                                    class="sapUiSmallMarginEnd"
+                                    placeholder="{i18nV2>view2.simpleForm.label.custCode}"
+                                    editable="{GlobalModel>/Editable}"
 
-            <Input
-                id="idV2InpCustCode"
-                value="{JSONModelPayload>/Kunnr}"
-                valueStateText="Enter {i18nV2>view2.simpleForm.label.custCode}"
-                showValueHelp="true"
-                valueHelpRequest="onCustomerCodeHelp"
-                class="sapUiSmallMarginEnd"
-                placeholder="{i18nV2>view2.simpleForm.label.custCode}"
-                editable="{GlobalModel>/Editable}"
+                                    textFormatMode="ValueKey"
+                                    showSuggestion="true"
+                                    showTableSuggestionValueHelp="false"
+                                    suggest=".onSuggest_custCode"
+                                    suggestionRows="{JSONModelForSuggest_custCode>/}"
+                                    suggestionItemSelected="onCustomerCodeInputSuggestionSelect"
+                                    
+                                    submit="onCustomerCodeInputSubmit"
+                                    change="onCustomerCodeInputChange"
+                                    liveChange="onCustomerCodeLiveChange" >
+                                    <suggestionColumns>
+                                        <Column popinDisplay="Inline" demandPopin="true" >
+                                            <Label text="Customer Code" />
+                                        </Column>
+                                        <Column popinDisplay="Inline" demandPopin="true" >
+                                            <Label text="Customer Name" />
+                                        </Column>
 
-                textFormatMode="ValueKey"
-                showSuggestion="true"
-                showTableSuggestionValueHelp="false"
-                suggest=".onSuggest_custCode"
-                suggestionRows="{JSONModelForSuggest_custCode>/}"
-                suggestionItemSelected="onCustomerCodeInputSuggestionSelect"
-                
-                submit="onCustomerCodeInputSubmit"
-                change="onCustomerCodeInputChange"
-                liveChange="onCustomerCodeLiveChange"
-            >
-                <suggestionColumns>
-                    <Column
-                        popinDisplay="Inline"
-                        demandPopin="true"
-                    >
-                        <Label text="Customer Code" />
-                    </Column>
-                    <Column
-                        popinDisplay="Inline"
-                        demandPopin="true"
-                    >
-                        <Label text="Customer Name" />
-                    </Column>
+                                        <!-- <core:Item
+                                            text="{JSONModelForSuggest_custCode>DomvalueL}"
+                                            key="{JSONModelForSuggest_custCode>Ddtext}"
+                                        /> -->
+                                    </suggestionColumns>
+                                    <suggestionRows>
+                                        <ColumnListItem>
+                                            <Label text="{JSONModelForSuggest_custCode>DomvalueL}" />
+                                            <Label text="{JSONModelForSuggest_custCode>Ddtext}" />
+                                        </ColumnListItem>
+                                    </suggestionRows>
+                                </Input>
 
-                    <!-- <core:Item
-                        text="{JSONModelForSuggest_custCode>DomvalueL}"
-                        key="{JSONModelForSuggest_custCode>Ddtext}"
-                    /> -->
-                </suggestionColumns>
-                <suggestionRows>
-                    <ColumnListItem>
-                        <Label
-                            text="{JSONModelForSuggest_custCode>DomvalueL}"
-                        />
-                        <Label text="{JSONModelForSuggest_custCode>Ddtext}" />
-                    </ColumnListItem>
-                </suggestionRows>
-            </Input>
                                 <Label />
-                                <Button
-                                    text="Submit"
-                                    press="onSubmitButtonPress"
-                                    type="Accept"
-                                />
+                                <Button text="Submit" press="onSubmitButtonPress" type="Accept" />
+                                
                             </form:content>
                         </form:SimpleForm>
                     </f:content>
