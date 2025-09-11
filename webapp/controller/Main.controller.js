@@ -40,7 +40,9 @@ sap.ui.define(
             mode: "None",
             rowMode: "Single",
             selBehavior: "RowOnly",
-            deleteButton: false
+            deleteButton: false,
+            zohoVisible: false,
+            requestTableVisible: true
         }
         this.getView().setModel(new JSONModel(oProperties), "oGlobleModel");
         this.getView().setModel(new JSONModel({}), "count");
@@ -328,7 +330,7 @@ sap.ui.define(
 
         // }
       },
-      
+
       _getRequestData: function (sStatusText, sForWhat, oFilterSalOffice, oFilterPafNo, oFilterCustCode, oFilterVertical) {
         var aFilter = [];
         var oFilter = new sap.ui.model.Filter([new sap.ui.model.Filter("Status", sap.ui.model.FilterOperator.EQ, sStatusText)], false);
@@ -552,6 +554,8 @@ sap.ui.define(
         var oFilterPafNo = new sap.ui.model.Filter([new sap.ui.model.Filter("Pafno", sap.ui.model.FilterOperator.EQ, vPAFNo)], false);
         var oFilterCustCode = new sap.ui.model.Filter([new sap.ui.model.Filter("Kunnr", sap.ui.model.FilterOperator.EQ, vCustomerCode)], false);
         var oFilterVertical = new sap.ui.model.Filter([new sap.ui.model.Filter("Spart", sap.ui.model.FilterOperator.EQ, vVertical)], false);
+        this.getView().getModel("oGlobleModel").setProperty("/zohoVisible", false);
+        this.getView().getModel("oGlobleModel").setProperty("/requestTableVisible", true);
         if (sKey === "All") {
           this._getRequestData("", "tableData", oFilterSalOffice, oFilterPafNo, oFilterCustCode, oFilterVertical);
           this.getView().getModel("modelEditFlag").setProperty("/Editable", false);
@@ -565,6 +569,8 @@ sap.ui.define(
         } else if (sKey === 'Zoho') {
           this.getView().getModel("modelEditFlag").setProperty("/Editable", true);
           this.getView().getModel("modelVisibleFlag").setProperty("/Visible", false);
+          this.getView().getModel("oGlobleModel").setProperty("/zohoVisible", true);
+          this.getView().getModel("oGlobleModel").setProperty("/requestTableVisible", false);
         } else if (sKey === "Delay") {
           this._getRequestData("D", "tableData", oFilterSalOffice, oFilterPafNo, oFilterCustCode, oFilterVertical);
           this.getView().getModel("modelEditFlag").setProperty("/Editable", true);

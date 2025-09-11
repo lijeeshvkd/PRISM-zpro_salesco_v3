@@ -91,35 +91,20 @@
                                 showTableSuggestionValueHelp="false"
                                 suggest=".onSuggest"
                                 suggestionRows="{JSONModelForSuggest>/}"
-                                suggestionItemSelected="onSalesOfficeSuggestionSelect"
-                            >
+                                suggestionItemSelected="onSalesOfficeSuggestionSelect">
                                 <suggestionColumns>
-                                    <Column
-                                        popinDisplay="Inline"
-                                        demandPopin="true"
-                                    >
+                                    <Column popinDisplay="Inline" demandPopin="true">
                                         <Label text="Sales Office Code" />
                                     </Column>
-                                    <Column
-                                        popinDisplay="Inline"
-                                        demandPopin="true"
-                                    >
+                                    <Column popinDisplay="Inline" demandPopin="true" >
                                         <Label text="Sales Office Name" />
                                     </Column>
-
-                                    <!-- <core:Item
-                        text="{JSONModelForSuggest_custCode>DomvalueL}"
-                        key="{JSONModelForSuggest_custCode>Ddtext}"
-                    /> -->
                                 </suggestionColumns>
+
                                 <suggestionRows>
                                     <ColumnListItem>
-                                        <Label
-                                            text="{JSONModelForSuggest>DomvalueL}"
-                                        />
-                                        <Label
-                                            text="{JSONModelForSuggest>Ddtext}"
-                                        />
+                                        <Label text="{JSONModelForSuggest>DomvalueL}" />
+                                        <Label text="{JSONModelForSuggest>Ddtext}" />
                                     </ColumnListItem>
                                 </suggestionRows>
                             </Input>
@@ -129,8 +114,7 @@
                         name="PafNo"
                         label="Paf No"
                         groupName="Group1"
-                        visibleInFilterBar="true"
-                    >
+                        visibleInFilterBar="true">
                         <fb:control>
                             <Input
                                 id="id.PafNo.Input"
@@ -557,7 +541,8 @@
                 rows="{ModelForTable>/}"
                 ariaLabelledBy="title"
                 rowSelectionChange="onClickofItem"
-                selectionBehavior="{oGlobleModel>/selBehavior}" >
+                selectionBehavior="{oGlobleModel>/selBehavior}"
+                visible="{oGlobleModel>/requestTableVisible}" >
                 <Table:extension>
                     <OverflowToolbar design="Transparent" width="100%">
                         <content>
@@ -672,6 +657,214 @@
 
                 </Table:columns>
             </Table:Table>
+
+            <VBox visible="{oGlobleModel>/zohoVisible}">
+                <fb:FilterBar
+                    id="ZohoTableFilter"
+                    persistencyKey="myPersKey"
+                    useToolbar="false"
+                    search="onZohoFiterSearch"
+                    showFilterConfiguration="false" >
+                    <fb:filterGroupItems>
+                        <fb:FilterGroupItem
+                            name="Projid"
+                            label="Project ID"
+                            groupName="Group1"
+                            mandatory="true"
+                            visibleInFilterBar="true" >
+                            <fb:control>
+                                <Input id="zohoProjectIDInput"
+                                    placeholder="Project ID"
+                                    change="onProjectIDInputSubmit"
+                                    submit="onZohoFiterSearch" />
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem
+                            name="Customer Code"
+                            label="{i18nV2>view2.simpleForm.label.custCode}"
+                            groupName="Group1"
+                            visibleInFilterBar="true">
+                            <fb:control>
+                                <Input
+                                    id="zohoCustomerID"
+                                    valueStateText="Enter {i18nV2>view2.simpleForm.label.custCode}"
+                                    showValueHelp="true"
+                                    valueHelpRequest="onCustomerCodeHelp"
+                                    class="sapUiSmallMarginEnd"
+                                    placeholder="{i18nV2>view2.simpleForm.label.custCode}"
+                                    textFormatMode="ValueKey"
+                                    showSuggestion="true"
+                                    showTableSuggestionValueHelp="false"
+                                    suggest=".onSuggest_custCode"
+                                    suggestionRows="{JSONModelForSuggest_custCode>/}"
+                                    suggestionItemSelected="onCustomerCodeInputSuggestionSelect"
+                                    submit="onZohoFiterSearch"
+                                    change="onZohoCustomerCodeInputChange"
+                                    liveChange="onZohoCustomerCodeLiveChange" >
+                                    <suggestionColumns>
+                                        <Column popinDisplay="Inline" demandPopin="true" >
+                                            <Label text="Customer Code" />
+                                        </Column>
+                                        <Column popinDisplay="Inline" demandPopin="true" >
+                                            <Label text="Customer Name" />
+                                        </Column>
+                                    </suggestionColumns>
+
+                                    <suggestionRows>
+                                        <ColumnListItem>
+                                            <Label text="{JSONModelForSuggest_custCode>DomvalueL}" />
+                                            <Label text="{JSONModelForSuggest_custCode>Ddtext}" />
+                                        </ColumnListItem>
+                                    </suggestionRows>
+                                </Input>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem
+                            name="SalesOffice"
+                            label="Sales Office"
+                            groupName="Group1"
+                            mandatory="true"
+                            visibleInFilterBar="true" >
+                            <fb:control>
+                                <Input
+                                    id="zohoSalesOfficeInput"
+                                    placeholder="Sales Office"
+                                    showValueHelp="true"
+                                    valueHelpRequest="onSalesOfficeHelp"
+                                    change="onZohoSalesOfficeInputSubmit"
+                                    submit="onZohoFiterSearch"
+                                    textFormatMode="ValueKey"
+                                    showSuggestion="true"
+                                    showTableSuggestionValueHelp="false"
+                                    suggest=".onSuggest"
+                                    suggestionRows="{JSONModelForSuggest>/}"
+                                    suggestionItemSelected="onSalesOfficeSuggestionSelect">
+                                    <suggestionColumns>
+                                        <Column popinDisplay="Inline" demandPopin="true">
+                                            <Label text="Sales Office Code" />
+                                        </Column>
+                                        <Column popinDisplay="Inline" demandPopin="true" >
+                                            <Label text="Sales Office Name" />
+                                        </Column>
+                                    </suggestionColumns>
+
+                                    <suggestionRows>
+                                        <ColumnListItem>
+                                            <Label text="{JSONModelForSuggest>DomvalueL}" />
+                                            <Label text="{JSONModelForSuggest>Ddtext}" />
+                                        </ColumnListItem>
+                                    </suggestionRows>
+                                </Input>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+                        <fb:FilterGroupItem
+                            name="Spart"
+                            label="Division"
+                            groupName="Group1"
+                            mandatory="true"
+                            visibleInFilterBar="true" >
+                            <fb:control>
+                                <Input id="zohoDivisionFilterInput"
+                                    placeholder="Division"
+                                    submit="onZohoFiterSearch" />
+                            </fb:control>
+                        </fb:FilterGroupItem>
+                        <fb:FilterGroupItem
+                            name="Oppu"
+                            label="Oppurtunity"
+                            groupName="Group1"
+                            mandatory="false"
+                            visibleInFilterBar="true" >
+                            <fb:control>
+                                <Input id="zohoOppurtunityFilterInput"
+                                    placeholder="Oppurtunity"
+                                    submit="onZohoFiterSearch" />
+                            </fb:control>
+                        </fb:FilterGroupItem>
+                    </fb:filterGroupItems>
+                </fb:FilterBar>
+                <Table:Table>
+                    <Table:extension>
+                        <OverflowToolbar design="Transparent" width="100%">
+                            <content>
+                                <Title text="{i18n.main>main.table.zoho.title}" level="H2" />
+
+                                <ToolbarSpacer />
+                                <Input placeholder="Search Project ID" liveChange="onProductIDSearch" width="15%" >
+                                    <layoutData>
+                                        <OverflowToolbarLayoutData priority="NeverOverflow" />
+                                    </layoutData>
+                                </Input>
+                                <Button text="Add New" icon="sap-icon://add" type="Accept" press="onNewPress" />
+                            </content>
+                        </OverflowToolbar>
+                    </Table:extension>
+                    <Table:columns>
+                        <Table:Column id="zohoTableProjid" sortProperty="Projid" >
+                            <Label text="{i18n.main>zoho.tablecolumn.text.Projid}" wrapping="true" />
+                            <Table:template>
+                                <Text text="" wrapping="false" />
+                            </Table:template>
+                        </Table:Column>
+                        <Table:Column id="zohoTableCustName" sortProperty="Name" >
+                            <Label text="{i18n.main>zoho.tablecolumn.text.CustName}" wrapping="true" />
+                            <Table:template>
+                                <Text text="" wrapping="false" />
+                            </Table:template>
+                        </Table:Column>
+                        <Table:Column id="zohoTablePoNum" sortProperty="Aufnr" >
+                            <Label text="{i18n.main>zoho.tablecolumn.text.PoNum}" wrapping="true" />
+                            <Table:template>
+                                <Text text="" wrapping="false" />
+                            </Table:template>
+                        </Table:Column>
+                        <Table:Column id="zohoTableSalesOffice" sortProperty="Vkbur" >
+                            <Label text="{i18n.main>zoho.tablecolumn.text.SalesOffice}" wrapping="true" />
+                            <Table:template>
+                                <Text text="" wrapping="false" />
+                            </Table:template>
+                        </Table:Column>
+                        <Table:Column id="zohoTableBillingType" sortProperty="Fkart" >
+                            <Label text="{i18n.main>zoho.tablecolumn.text.BillingType}" wrapping="true" />
+                            <Table:template>
+                                <Text text="" wrapping="false" />
+                            </Table:template>
+                        </Table:Column>
+                        <Table:Column id="zohoTableDivision" sortProperty="Spart" >
+                            <Label text="{i18n.main>zoho.tablecolumn.text.Division}" wrapping="true" />
+                            <Table:template>
+                                <Text text="" wrapping="false" />
+                            </Table:template>
+                        </Table:Column>
+                        <Table:Column id="zohoTableValidFrom" sortProperty="Pafvfrm" >
+                            <Label text="{i18n.main>zoho.tablecolumn.text.ValidFrom}" wrapping="true" />
+                            <Table:template>
+                                <Text text="" wrapping="false" />
+                            </Table:template>
+                        </Table:Column>
+                        <Table:Column id="zohoTableValidTo" sortProperty="Pafvto" >
+                            <Label text="{i18n.main>zoho.tablecolumn.text.ValidTo}" wrapping="true" />
+                            <Table:template>
+                                <Text text="" wrapping="false" />
+                            </Table:template>
+                        </Table:Column>
+                        <Table:Column id="zohoTablePAF" sortProperty="Pafno" >
+                            <Label text="{i18n.main>zoho.tablecolumn.text.PAF}" wrapping="true" />
+                            <Table:template>
+                                <Text text="" wrapping="false" />
+                            </Table:template>
+                        </Table:Column>
+                        <Table:Column id="zohoTableOppurtunity" sortProperty="Oppu" >
+                            <Label text="{i18n.main>zoho.tablecolumn.text.Oppurtunity}" wrapping="true" />
+                            <Table:template>
+                                <Text text="" wrapping="false" />
+                            </Table:template>
+                        </Table:Column>
+                    </Table:columns>
+                </Table:Table>
+            </VBox>
             <!-- End: tableSort001 --> 
         </content>
     </IconTabBar>
