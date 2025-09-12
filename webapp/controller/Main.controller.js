@@ -42,7 +42,9 @@ sap.ui.define(
             selBehavior: "RowOnly",
             deleteButton: false,
             zohoVisible: false,
-            requestTableVisible: true
+            requestTableVisible: true,
+            zohoFilter: {},
+            zohoData: []
         }
         this.getView().setModel(new JSONModel(oProperties), "oGlobleModel");
         this.getView().setModel(new JSONModel({}), "count");
@@ -226,6 +228,45 @@ sap.ui.define(
                 }.bind(this),
               });
           }
+      },
+
+      onZohoFiterSearch: function() {
+          var aFilter = [],
+              oModel = this.getView().getModel(),
+              oGlobalModel =  this.getView().getModel("oGlobleModel");
+          if (oGlobalModel.getProperty("/zohoFilter/Projid")) {
+              aFilter.push(new sap.ui.model.Filter([new sap.ui.model.Filter("Projid", sap.ui.model.FilterOperator.EQ, oGlobalModel.getProperty("/zohoFilter/Projid"))], false));
+          }
+
+          if (oGlobalModel.getProperty("/zohoFilter/Customer")) {
+              aFilter.push(new sap.ui.model.Filter([new sap.ui.model.Filter("Kunnr", sap.ui.model.FilterOperator.EQ, oGlobalModel.getProperty("/zohoFilter/Customer"))], false));
+          }
+
+          if (oGlobalModel.getProperty("/zohoFilter/SalesOffice")) {
+              aFilter.push(new sap.ui.model.Filter([new sap.ui.model.Filter("Vkbur", sap.ui.model.FilterOperator.EQ, oGlobalModel.getProperty("/zohoFilter/SalesOffice"))], false));
+          }
+
+          if (oGlobalModel.getProperty("/zohoFilter/Oppurtunity")) {
+              aFilter.push(new sap.ui.model.Filter([new sap.ui.model.Filter("Oppu", sap.ui.model.FilterOperator.EQ, oGlobalModel.getProperty("/zohoFilter/Oppurtunity"))], false));
+          }
+          
+          var sPath = "/ET_ZDI_TP_OPPSet";
+          this.getView().setBusy(true);
+
+          oModel.read(sPath, {
+              filters: aFilter,
+              success: function (Data) {
+                  this.getView().setBusy(false);
+                  oGlobalModel.setProperty("/zohoData", Data.results);
+              }.bind(this),
+              error: function(oError) {
+                  this.getView().setBusy(false);
+                  MessageBox.error(JSON.parse(oError.responseText).error.innererror.errordetails[0].message, {
+                    actions: [sap.m.MessageBox.Action.OK],
+                    onClose: function (oAction) { },
+                  });
+              }.bind(this)
+          })
       },
 
       // End: Sales Office
