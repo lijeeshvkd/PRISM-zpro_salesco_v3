@@ -675,8 +675,22 @@
                             <fb:control>
                                 <Input id="zohoProjectIDInput"
                                     placeholder="Project ID"
-                                    change="onProjectIDInputSubmit"
+                                    value="{oGlobleModel>/zohoFilter/Projid}"
                                     submit="onZohoFiterSearch" />
+                            </fb:control>
+                        </fb:FilterGroupItem>
+                        
+                        <fb:FilterGroupItem
+                            name="Oppu"
+                            label="Oppurtunity"
+                            groupName="Group1"
+                            mandatory="true"
+                            visibleInFilterBar="true" >
+                            <fb:control>
+                                <Input id="zohoOppurtunityFilterInput"
+                                    placeholder="Oppurtunity"
+                                    submit="onZohoFiterSearch"
+                                    value="{oGlobleModel>/zohoFilter/Oppurtunity}" />
                             </fb:control>
                         </fb:FilterGroupItem>
 
@@ -700,8 +714,7 @@
                                     suggestionRows="{JSONModelForSuggest_custCode>/}"
                                     suggestionItemSelected="onCustomerCodeInputSuggestionSelect"
                                     submit="onZohoFiterSearch"
-                                    change="onZohoCustomerCodeInputChange"
-                                    liveChange="onZohoCustomerCodeLiveChange" >
+                                    value="{oGlobleModel>/zohoFilter/Customer}" >
                                     <suggestionColumns>
                                         <Column popinDisplay="Inline" demandPopin="true" >
                                             <Label text="Customer Code" />
@@ -725,7 +738,7 @@
                             name="SalesOffice"
                             label="Sales Office"
                             groupName="Group1"
-                            mandatory="true"
+                            mandatory="false"
                             visibleInFilterBar="true" >
                             <fb:control>
                                 <Input
@@ -733,7 +746,7 @@
                                     placeholder="Sales Office"
                                     showValueHelp="true"
                                     valueHelpRequest="onSalesOfficeHelp"
-                                    change="onZohoSalesOfficeInputSubmit"
+                                    value="{oGlobleModel>/zohoFilter/SalesOffice}"
                                     submit="onZohoFiterSearch"
                                     textFormatMode="ValueKey"
                                     showSuggestion="true"
@@ -763,7 +776,7 @@
                             name="Spart"
                             label="Division"
                             groupName="Group1"
-                            mandatory="true"
+                            mandatory="false"
                             visibleInFilterBar="true" >
                             <fb:control>
                                 <Input id="zohoDivisionFilterInput"
@@ -771,21 +784,9 @@
                                     submit="onZohoFiterSearch" />
                             </fb:control>
                         </fb:FilterGroupItem>
-                        <fb:FilterGroupItem
-                            name="Oppu"
-                            label="Oppurtunity"
-                            groupName="Group1"
-                            mandatory="false"
-                            visibleInFilterBar="true" >
-                            <fb:control>
-                                <Input id="zohoOppurtunityFilterInput"
-                                    placeholder="Oppurtunity"
-                                    submit="onZohoFiterSearch" />
-                            </fb:control>
-                        </fb:FilterGroupItem>
                     </fb:filterGroupItems>
                 </fb:FilterBar>
-                <Table:Table>
+                <Table:Table rows="{oGlobleModel>/zohoData}">
                     <Table:extension>
                         <OverflowToolbar design="Transparent" width="100%">
                             <content>
@@ -797,7 +798,7 @@
                                         <OverflowToolbarLayoutData priority="NeverOverflow" />
                                     </layoutData>
                                 </Input>
-                                <Button text="Add New" icon="sap-icon://add" type="Accept" press="onNewPress" />
+                                <Button text="{i18n.main>main.table.zoho.Adapt}" icon="sap-icon://add" type="Accept" press="onNewPress" />
                             </content>
                         </OverflowToolbar>
                     </Table:extension>
@@ -805,61 +806,61 @@
                         <Table:Column id="zohoTableProjid" sortProperty="Projid" >
                             <Label text="{i18n.main>zoho.tablecolumn.text.Projid}" wrapping="true" />
                             <Table:template>
-                                <Text text="" wrapping="false" />
-                            </Table:template>
-                        </Table:Column>
-                        <Table:Column id="zohoTableCustName" sortProperty="Name" >
-                            <Label text="{i18n.main>zoho.tablecolumn.text.CustName}" wrapping="true" />
-                            <Table:template>
-                                <Text text="" wrapping="false" />
-                            </Table:template>
-                        </Table:Column>
-                        <Table:Column id="zohoTablePoNum" sortProperty="Aufnr" >
-                            <Label text="{i18n.main>zoho.tablecolumn.text.PoNum}" wrapping="true" />
-                            <Table:template>
-                                <Text text="" wrapping="false" />
-                            </Table:template>
-                        </Table:Column>
-                        <Table:Column id="zohoTableSalesOffice" sortProperty="Vkbur" >
-                            <Label text="{i18n.main>zoho.tablecolumn.text.SalesOffice}" wrapping="true" />
-                            <Table:template>
-                                <Text text="" wrapping="false" />
-                            </Table:template>
-                        </Table:Column>
-                        <Table:Column id="zohoTableBillingType" sortProperty="Fkart" >
-                            <Label text="{i18n.main>zoho.tablecolumn.text.BillingType}" wrapping="true" />
-                            <Table:template>
-                                <Text text="" wrapping="false" />
-                            </Table:template>
-                        </Table:Column>
-                        <Table:Column id="zohoTableDivision" sortProperty="Spart" >
-                            <Label text="{i18n.main>zoho.tablecolumn.text.Division}" wrapping="true" />
-                            <Table:template>
-                                <Text text="" wrapping="false" />
-                            </Table:template>
-                        </Table:Column>
-                        <Table:Column id="zohoTableValidFrom" sortProperty="Pafvfrm" >
-                            <Label text="{i18n.main>zoho.tablecolumn.text.ValidFrom}" wrapping="true" />
-                            <Table:template>
-                                <Text text="" wrapping="false" />
-                            </Table:template>
-                        </Table:Column>
-                        <Table:Column id="zohoTableValidTo" sortProperty="Pafvto" >
-                            <Label text="{i18n.main>zoho.tablecolumn.text.ValidTo}" wrapping="true" />
-                            <Table:template>
-                                <Text text="" wrapping="false" />
-                            </Table:template>
-                        </Table:Column>
-                        <Table:Column id="zohoTablePAF" sortProperty="Pafno" >
-                            <Label text="{i18n.main>zoho.tablecolumn.text.PAF}" wrapping="true" />
-                            <Table:template>
-                                <Text text="" wrapping="false" />
+                                <Text text="{oGlobleModel>Projid}" wrapping="false" />
                             </Table:template>
                         </Table:Column>
                         <Table:Column id="zohoTableOppurtunity" sortProperty="Oppu" >
                             <Label text="{i18n.main>zoho.tablecolumn.text.Oppurtunity}" wrapping="true" />
                             <Table:template>
-                                <Text text="" wrapping="false" />
+                                <Text text="{oGlobleModel>Oppu}" wrapping="false" />
+                            </Table:template>
+                        </Table:Column>
+                        <Table:Column id="zohoTableCustName" sortProperty="Kunnr" >
+                            <Label text="{i18n.main>zoho.tablecolumn.text.CustName}" wrapping="true" />
+                            <Table:template>
+                                <Text text="{oGlobleModel>Kunnr}" wrapping="false" />
+                            </Table:template>
+                        </Table:Column>
+                        <Table:Column id="zohoTablePoNum" sortProperty="Aufnr" >
+                            <Label text="{i18n.main>zoho.tablecolumn.text.PoNum}" wrapping="true" />
+                            <Table:template>
+                                <Text text="{oGlobleModel>Aufnr}" wrapping="false" />
+                            </Table:template>
+                        </Table:Column>
+                        <Table:Column id="zohoTableSalesOffice" sortProperty="Vkbur" >
+                            <Label text="{i18n.main>zoho.tablecolumn.text.SalesOffice}" wrapping="true" />
+                            <Table:template>
+                                <Text text="{oGlobleModel>Projid}" wrapping="false" />
+                            </Table:template>
+                        </Table:Column>
+                        <Table:Column id="zohoTableBillingType" sortProperty="Fkart" >
+                            <Label text="{i18n.main>zoho.tablecolumn.text.BillingType}" wrapping="true" />
+                            <Table:template>
+                                <Text text="{oGlobleModel>Fkart}" wrapping="false" />
+                            </Table:template>
+                        </Table:Column>
+                        <Table:Column id="zohoTableDivision" sortProperty="Spart" >
+                            <Label text="{i18n.main>zoho.tablecolumn.text.Division}" wrapping="true" />
+                            <Table:template>
+                                <Text text="{oGlobleModel>Spart}" wrapping="false" />
+                            </Table:template>
+                        </Table:Column>
+                        <Table:Column id="zohoTableValidFrom" sortProperty="Pafvfrm" >
+                            <Label text="{i18n.main>zoho.tablecolumn.text.ValidFrom}" wrapping="true" />
+                            <Table:template>
+                                <Text text="{oGlobleModel>Pafvfrm}" wrapping="false" />
+                            </Table:template>
+                        </Table:Column>
+                        <Table:Column id="zohoTableValidTo" sortProperty="Pafvto" >
+                            <Label text="{i18n.main>zoho.tablecolumn.text.ValidTo}" wrapping="true" />
+                            <Table:template>
+                                <Text text="{oGlobleModel>Pafvto}" wrapping="false" />
+                            </Table:template>
+                        </Table:Column>
+                        <Table:Column id="zohoTablePAF" sortProperty="Pafno" >
+                            <Label text="{i18n.main>zoho.tablecolumn.text.PAF}" wrapping="true" />
+                            <Table:template>
+                                <Text text="{oGlobleModel>Pafno}" wrapping="false" />
                             </Table:template>
                         </Table:Column>
                     </Table:columns>
