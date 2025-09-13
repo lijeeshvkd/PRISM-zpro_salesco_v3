@@ -258,14 +258,14 @@ sap.ui.define(
 					oMainModel = this.getView().getModel("mainModel"),
 					isFilledMandatory = true;
 				if (oMainModel.getProperty("/zoho/zohoFilter/Projid")) {
-					// aFilter.push(new sap.ui.model.Filter([new sap.ui.model.Filter("Projid", sap.ui.model.FilterOperator.EQ, oMainModel.getProperty("/zoho/zohoFilter/Projid"))], false));
+					aFilter.push(new sap.ui.model.Filter([new sap.ui.model.Filter("Projid", sap.ui.model.FilterOperator.EQ, oMainModel.getProperty("/zoho/zohoFilter/Projid"))], false));
 				} else {
 					isFilledMandatory = false;
 					oMainModel.setProperty("/zoho/zohoFilterFieldState/Projid", "Error");
 				}
 
 				if (oMainModel.getProperty("/zoho/zohoFilter/Oppurtunity")) {
-					// aFilter.push(new sap.ui.model.Filter([new sap.ui.model.Filter("Oppu", sap.ui.model.FilterOperator.EQ, oMainModel.getProperty("/zoho/zohoFilter/Oppurtunity"))], false));
+					aFilter.push(new sap.ui.model.Filter([new sap.ui.model.Filter("Oppu", sap.ui.model.FilterOperator.EQ, oMainModel.getProperty("/zoho/zohoFilter/Oppurtunity"))], false));
 				} else {
 					isFilledMandatory = false;
 					oMainModel.setProperty("/zoho/zohoFilterFieldState/Oppurtunity", "Error");

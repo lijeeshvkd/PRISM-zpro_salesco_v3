@@ -91,7 +91,9 @@ sap.ui.define(
 					//End: Upload, View and Download Attachment
 
 					// setting response payload limit to 300
-					this.getOwnerComponent().getModel().setSizeLimit(300);
+					this.getOwnerComponent().getModel().setSizeLimit(1000);
+
+					this.getView().setModel(new JSONModel({}), "JSONModelPayload");
 				},
 
 				onRouteMatched: function (oEvent) {
@@ -138,23 +140,33 @@ sap.ui.define(
 						this.getView().byId("idV2OPSubAttach").setVisible(true);
 						
 						// payload for OData service
-						var dataModelPayload = this.getOwnerComponent().getModel("payload").getData();
+						this.onClear();
+						var dataModelPayload = this.getView().getModel("payload").getData();
 
 						// DEFAULT VALUES FROM ZOHO SELECTION
-						dataModelPayload.header.Kunnr = oSeletectedZohoItem.Kunnr || '';
-						dataModelPayload.header.Oppu = oSeletectedZohoItem.Oppu || '';
-						dataModelPayload.header.Vkbur = oSeletectedZohoItem.Vkbur || '';
-						dataModelPayload.header.Soname = oSeletectedZohoItem.Soname || '';
-						dataModelPayload.header.Spart = oSeletectedZohoItem.Spart || '';
+						
+						if (oSeletectedZohoItem && Object.keys(oSeletectedZohoItem).length) {
+							dataModelPayload.header.Kunnr = oSeletectedZohoItem.Kunnr || '';
+							dataModelPayload.header.Oppu = oSeletectedZohoItem.Oppu || '';
+							dataModelPayload.header.Vkbur = oSeletectedZohoItem.Vkbur.trim() || '';
+							dataModelPayload.header.Soname = oSeletectedZohoItem.Soname || '';
+							dataModelPayload.header.Spart = oSeletectedZohoItem.Spart || '';
+						} else {
+							dataModelPayload.header.Kunnr = '';
+							dataModelPayload.header.Oppu = '';
+							dataModelPayload.header.Vkbur = '';
+							dataModelPayload.header.Soname = '';
+							dataModelPayload.header.Spart = '';
+						}
 						// END OF DEFAULT VALUES FROM ZOHO SELECTION
 
 						dataModelPayload.header.ET_SALES_COORD_ISET.results = [];
 						dataModelPayload.header.ET_SALES_COORD_ISET.results.push(
 							dataModelPayload.item
 						);
-						this.getView().setModel(new JSONModel(dataModelPayload.header), "JSONModelPayload");
+						this.getView().getModel("JSONModelPayload").setData(dataModelPayload.header);
 
-						this.onClear();
+						//this.onClear();
 						this.getView().byId("ObjectPageLayout").getHeaderTitle().setObjectTitle("Generate New Request");
 						var oDOAAAttachmentModel = new JSONModel([]);
 						this.getView().setModel(oDOAAAttachmentModel, "oDOAAAttachmentModel");
@@ -577,7 +589,7 @@ sap.ui.define(
 						},
 					};
 					this.getView().getModel("JSONModelPayload").setData(JSONData);
-					this.getView().getModel("JSONModelPayload").refresh(true);
+					this.getView().getModel("JSONModelPayload").updateBindings(true);
 				},
 
 				onBack: function () {
