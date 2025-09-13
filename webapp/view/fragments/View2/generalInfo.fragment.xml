@@ -37,7 +37,7 @@
                 valueHelpRequest="onCustomerCodeHelp"
                 class="sapUiSmallMarginEnd"
                 placeholder="{i18nV2>view2.simpleForm.label.custCode}"
-                editable="{GlobalModel>/Editable}"
+                editable="{viewModel>/Editable}"
                 textFormatMode="ValueKey"
                 showSuggestion="true"
                 showTableSuggestionValueHelp="false"
@@ -96,7 +96,7 @@
                 items="{LocalJSONModels>/distributonChannel}"
                 selectedKey="{JSONModelPayload>/Vtweg}"
                 valueStateText="Select {i18nV2>view2.simpleForm.label.distChnl}"
-                editable="{GlobalModel>/Editable}"
+                editable="{viewModel>/Editable}"
                 change="onDistributionChannelChange"
             >
                 <core:Item
@@ -115,7 +115,7 @@
                 items="{LocalJSONModels>/paymentTerms}"
                 selectedKey="{JSONModelPayload>/Zterm}"
                 valueStateText="Select {i18nV2>view2.simpleForm.label.payTerm}"
-                editable="{GlobalModel>/Editable}"
+                editable="{viewModel>/Editable}"
                 change="onPaymentTermsSelectChange"
             >
                 <core:Item
@@ -124,7 +124,7 @@
                     text="{LocalJSONModels>text}"
                 />
             </Select> -->
-            <!-- editable="{GlobalModel>/Editable}" -->
+            <!-- editable="{viewModel>/Editable}" -->
             <Select
                 id="idV2SLPaymentTerm"
                 forceSelection="false"
@@ -158,38 +158,38 @@
                 valueStateText="Enter {i18nV2>view2.simpleForm.label.validity}"
                 maxLength="3"
                 value="{path:'JSONModelPayload>/Validity'}"
-                editable="{GlobalModel>/Editable}"
+                editable="{viewModel>/Editable}"
                 liveChange="onValidityNumber"
             />
 
             <!-- Start: Newfields001, Mandatefields001 -->
             <Label
                 text="{i18nV2>view2.simpleForm.label.Oppurtunity}"
-                required="{GlobalModel>/Required}"
+                required="{viewModel>/Required}"
             />
             
             <Input
                 value="{JSONModelPayload>/Oppu}" 
                 maxLength="25"
-              editable="{GlobalModel>/Editable}"
+              editable="{viewModel>/Editable}"
             />
 
             <Label text="{i18nV2>view2.simpleForm.label.Specifier}" />
             <Input
                 value="{JSONModelPayload>/Specid}"
                 maxLength="10"
-                editable="{GlobalModel>/Editable}"
+                editable="{viewModel>/Editable}"
             />
             <!-- Start: pending001 -->
             <Label
                 text="{i18nV2>view2.simpleForm.label.Pending}"
-                visible="{GlobalModel>/Pending}"
+                visible="{viewModel>/Pending}"
             />
             <Input
                 value="{JSONModelPayload>/Role}"
                 maxLength="10"
-                editable="{GlobalModel>/Editable}"
-                visible="{GlobalModel>/Pending}"
+                editable="{viewModel>/Editable}"
+                visible="{viewModel>/Pending}"
             />
             <!-- End: pending001 -->
             <!-- <Label
@@ -207,14 +207,14 @@
             <Label
                 id="idV2LblOrdNo"
                 text="{i18nV2>view2.simpleForm.label.ordNo}"
-                required="{GlobalModel>/Required}"
+                required="{viewModel>/Required}"
             />
             <Input
                 id="idV2InpOrderNo"
                 placeholder="{i18nV2>view2.simpleForm.label.ordNo}"
                 valueStateText="Enter {i18nV2>view2.simpleForm.label.ordNo}"
                 value="{JSONModelPayload>/Aufnr}"
-                editable="{GlobalModel>/Editable}"
+                editable="{viewModel>/Editable}"
                 liveChange="onLiveChange"
             />
             <!-- End: Newfields001, Mandatefields001 -->
@@ -232,7 +232,7 @@
                 placeholder="{i18nV2>view2.simpleForm.label.salOffice}"
                 valueStateText="Enter {i18nV2>view2.simpleForm.label.salOffice}"
                 value="{parts: ['JSONModelPayload>/Soname','JSONModelPayload>/Vkbur'], formatter:'sap.formatter.showSalesOffice'}"
-                editable="{GlobalModel>/Editable}"
+                editable="{viewModel>/Editable}"
                 showSuggestion="true"
                 suggest=".onSuggest_salesOffice"
                 suggestionItems="{JSONModelForSuggest>/}"
@@ -256,7 +256,7 @@
                 items="{LocalJSONModels>/vertical}"
                 selectedKey="{JSONModelPayload>/Spart}"
                 valueStateText="Select {i18nV2>view2.simpleForm.label.vertical}"
-                editable="{GlobalModel>/Editable}"
+                editable="{viewModel>/Editable}"
                 change="onVerticalSelectChange"
             >
                 <core:Item
@@ -293,21 +293,21 @@
             <!--Start: Newfields001, Mandatefields001 -->
             <Label
                 text="{i18nV2>view2.simpleForm.label.projectnameaddress}"
-                required="{GlobalModel>/Required}"
+                required="{viewModel>/Required}"
             />
             <TextArea
                 value="{JSONModelPayload>/Proj}"
-                editable="{GlobalModel>/Editable}"
+                editable="{viewModel>/Editable}"
             />
             <!--End: Newfields001 -->
             <!--End: Divya's changes -->
 
             <!-- Start: Newfields001 -->
             <Label text="{i18nV2>view2.simpleForm.label.ProjectSpecifier}" />
-            <!-- required="{GlobalModel>/Required}" -->
+            <!-- required="{viewModel>/Required}" -->
             <TextArea
                 value="{JSONModelPayload>/Spec}"
-                editable="{GlobalModel>/Editable}"
+                editable="{viewModel>/Editable}"
             />
 
             <!-- End: Newfields001, Mandatefields001 -->
@@ -319,7 +319,7 @@
                 class="sapUiMediumMarginBottom"
                 select="onRadioButtonGroupSelect"
                 selectedIndex="{=${JSONModelPayload>/Isexdep}==='X'?${JSONModelPayload>/Isexdep}===''?-1:1:${JSONModelPayload>/Isexdep}===''?-1:0}"
-                editable="{GlobalModel>/Editable}"
+                editable="{viewModel>/Editable}"
             > -->
             <!-- Isexdep -->
             <!-- <RadioButton

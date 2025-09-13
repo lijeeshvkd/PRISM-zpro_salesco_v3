@@ -62,7 +62,7 @@
             >
                 <headerToolbar>
                     <Toolbar id="idV2TB">
-                        <ToolbarSpacer id="idV2TBS" />
+                        <ToolbarSpacer id="idV2TBS1" />
                     </Toolbar>
                 </headerToolbar>
                 <columns>

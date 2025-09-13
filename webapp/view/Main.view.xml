@@ -52,7 +52,7 @@
                                     valueHelpRequest="onCustomerCodeHelp"
                                     class="sapUiSmallMarginEnd"
                                     placeholder="{i18nV2>view2.simpleForm.label.custCode}"
-                                    editable="{GlobalModel>/Editable}"
+                                    editable="{modelEditFlag>/Editable}"
 
                                     textFormatMode="ValueKey"
                                     showSuggestion="true"
@@ -87,7 +87,7 @@
 
                                 <Label />
                                 <Button text="Submit" press="onSubmitButtonPress" type="Accept" />
-                                
+
                             </form:content>
                         </form:SimpleForm>
                     </f:content>
