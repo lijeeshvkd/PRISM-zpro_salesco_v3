@@ -141,10 +141,10 @@ sap.ui.define(
 						
 						// payload for OData service
 						//this.onClear();
+						this.clearRequestPayload();
 						var dataModelPayload = this.getView().getModel("payload").getData();
 
 						// DEFAULT VALUES FROM ZOHO SELECTION
-						this.clearRequestPayload();
 						if (oSeletectedZohoItem && Object.keys(oSeletectedZohoItem).length) {
 							dataModelPayload.header.Kunnr = oSeletectedZohoItem.Kunnr || '';
 							dataModelPayload.header.Oppu = oSeletectedZohoItem.Oppu || '';
@@ -557,7 +557,31 @@ sap.ui.define(
 						  "results": []
 						}
 					}
+					var oRequestPayloadItem = {
+						"Mfrgr": "",
+						"Szmm": "",
+						"Mvgr2": "",
+						"Werks": "",
+						"Prodh1": "",
+						"CurVolFt": "",
+						"TotalVol": "",
+						"Disc": null,
+						"Discb": null,
+						"Commbox": null,
+						"Exfacsqft": null,
+						"Exdepsqft": null,
+						"Commboxp": null,
+						"Frgtsqft": null,
+						"Compname": null,
+						"Complanprice": null,
+						"Sbremark": null,
+						"Zzprodh4": "",
+						"Mvgr5": "",
+						"Isexdep": ""
+					}
 					this.getView().getModel("payload").setProperty("/header", oRequestPayloadHeader);
+					this.getView().getModel("payload").setProperty("/item", oRequestPayloadItem);
+					this.getView().getModel("payload").updateBindings(true);
 				},
 
 				onClear: function () {

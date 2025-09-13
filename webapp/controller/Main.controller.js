@@ -287,6 +287,7 @@ sap.ui.define(
 						success: function (Data) {
 							this.getView().setBusy(false);
 							oMainModel.setProperty("/zoho/zohoData", Data.results);
+							this.getView().getModel("count").setProperty("/Zoho", Data.results.length);
 						}.bind(this),
 						error: function (oError) {
 							this.getView().setBusy(false);

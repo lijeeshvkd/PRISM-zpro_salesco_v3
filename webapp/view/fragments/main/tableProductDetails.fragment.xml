@@ -24,7 +24,7 @@
                 id="id.main.ITFZoho"
                 icon="sap-icon://mirrored-task-circle"
                 iconColor="Contrast"
-                count=""
+                count="{count>/Zoho}"
                 text="{i18n.main>main.IconTabFilter.zoho}"
                 key="Zoho"
             />
