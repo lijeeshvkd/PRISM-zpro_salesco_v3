@@ -177,7 +177,7 @@
                                 valueHelpRequest="onCustomerCodeHelp"
                                 class="sapUiSmallMarginEnd"
                                 placeholder="{i18nV2>view2.simpleForm.label.custCode}"
-                                editable="{GlobalModel>/Editable}"
+                                editable="{modelEditFlag>/Editable}"
                                 textFormatMode="ValueKey"
                                 showSuggestion="true"
                                 showTableSuggestionValueHelp="false"
@@ -266,7 +266,7 @@
                     items="{LocalJSONModels>/vertical}"
                     selectedKey="{JSONModelPayload>/Spart}"
                     valueStateText="Select {i18nV2>view2.simpleForm.label.vertical}"
-                    editable="{GlobalModel>/Editable}"
+                    editable="{modelEditFlag>/Editable}"
                     change="onVerticalSelectChange"
                 >
                     <core:Item
@@ -787,7 +787,7 @@
                         </fb:FilterGroupItem>
                     </fb:filterGroupItems>
                 </fb:FilterBar>
-                <Table:Table id="zohoTable" rows="{mainModel>/zoho/zohoData}" rowSelectionChange="zohoTableSelectionChange" >
+                <Table:Table id="zohoTable" rows="{mainModel>/zoho/zohoData}" selectionMode="Single" rowSelectionChange="zohoTableSelectionChange" >
                     <Table:extension>
                         <OverflowToolbar design="Transparent" width="100%">
                             <content>

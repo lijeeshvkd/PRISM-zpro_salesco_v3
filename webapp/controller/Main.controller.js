@@ -17,7 +17,7 @@ sap.ui.define(
 		return Controller.extend("zpj.pro.sk.sd.salesco.zprosalesco.controller.Main", {
 
 			onInit: function () {
-				this.getOwnerComponent().getRouter().attachRoutePatternMatched(this._onRouteMatched, this);
+				this.getOwnerComponent().getRouter().getRoute("RouteMain").attachPatternMatched(this._onRouteMatched, this);
 				var oEditFlag = {
 					Editable: false,
 				};
@@ -49,13 +49,29 @@ sap.ui.define(
 							Projid: "None",
 							Oppurtunity: "None"
 						},
-						zohoData: []
+						zohoData: [],
+						zohoProducts: []
 					}
 				}
 				this.getView().setModel(new JSONModel(oProperties), "mainModel");
 				this.getView().setModel(new JSONModel({}), "count");
 			},
 
+			_readSohoProducts: function() {
+				var sPath = "/ET_OP_HEADSet"
+				this.getView().getModel().read(sPath, {
+					urlParameters: {
+						$expand: "OpHeaderToItem",
+					},
+					success: function(oData) {
+						this.getView().getModel("mainModel").setProperty("/zoho/zohoProducts", oData.results);
+					}.bind(this),
+					error: function(oError) {
+
+					}
+				});
+			},
+			
 			// Start: Sales Office
 			onSalesOfficeHelp: function () {
 				if (!this.SalesOfficerag) {
@@ -374,6 +390,7 @@ sap.ui.define(
 			},
 
 			_onRouteMatched: function (oEvent) {
+				this._readSohoProducts();
 				var oGlobalModel = this.getView().getModel("globalModel");
 				oGlobalModel.setProperty("/selectedZoho", {});
 				this.sID = oEvent.getParameter("arguments").ID;
@@ -595,8 +612,14 @@ sap.ui.define(
 			onAdaptPress: function () {
 
 				var oZohoTable = this.byId(sap.ui.core.Fragment.createId("id.tableProductDetails.Fragment", "zohoTable")),
-					oSeletedItem = oZohoTable.getRows()[0].getBindingContext("mainModel").getObject(),
+					oSeletedItem = {},
 					oGlobalModel = this.getView().getModel("globalModel");
+
+				if (oZohoTable.getSelectedIndices().length) {
+					oSeletedItem = oZohoTable.getRows()[oZohoTable.getSelectedIndices()[0]].getBindingContext("mainModel").getObject();
+				}
+					
+					
 
 				oGlobalModel.setProperty("/selectedZoho", oSeletedItem);
 				this.oRouter = this.getOwnerComponent().getRouter();
