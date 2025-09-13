@@ -140,24 +140,17 @@ sap.ui.define(
 						this.getView().byId("idV2OPSubAttach").setVisible(true);
 						
 						// payload for OData service
-						this.onClear();
+						//this.onClear();
 						var dataModelPayload = this.getView().getModel("payload").getData();
 
 						// DEFAULT VALUES FROM ZOHO SELECTION
-						
+						this.clearRequestPayload();
 						if (oSeletectedZohoItem && Object.keys(oSeletectedZohoItem).length) {
 							dataModelPayload.header.Kunnr = oSeletectedZohoItem.Kunnr || '';
 							dataModelPayload.header.Oppu = oSeletectedZohoItem.Oppu || '';
 							dataModelPayload.header.Vkbur = oSeletectedZohoItem.Vkbur.trim() || '';
 							dataModelPayload.header.Soname = oSeletectedZohoItem.Soname || '';
 							dataModelPayload.header.Spart = oSeletectedZohoItem.Spart || '';
-						} else {
-							this.clearRequestPayload();
-							dataModelPayload.header.Kunnr = '';
-							dataModelPayload.header.Oppu = '';
-							dataModelPayload.header.Vkbur = '';
-							dataModelPayload.header.Soname = '';
-							dataModelPayload.header.Spart = '';
 						}
 						// END OF DEFAULT VALUES FROM ZOHO SELECTION
 
