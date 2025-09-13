@@ -286,7 +286,7 @@
             <Table
                 id="id.main.Products.Table"
                 alternateRowColors="true"
-                mode="{oGlobleModel>/mode}"
+                mode="{mainModel>/mode}"
                 growing="true"
                 headerText="{i18n.main>main.table.headerText}"
                 items="{ModelForTable>/}"
@@ -537,12 +537,12 @@
 
             <!-- New -->
             <Table:Table id="table"
-                selectionMode="{oGlobleModel>/rowMode}"
+                selectionMode="{mainModel>/rowMode}"
                 rows="{ModelForTable>/}"
                 ariaLabelledBy="title"
                 rowSelectionChange="onClickofItem"
-                selectionBehavior="{oGlobleModel>/selBehavior}"
-                visible="{oGlobleModel>/requestTableVisible}" >
+                selectionBehavior="{mainModel>/selBehavior}"
+                visible="{mainModel>/requestTableVisible}" >
                 <Table:extension>
                     <OverflowToolbar design="Transparent" width="100%">
                         <content>
@@ -555,7 +555,7 @@
                                 </layoutData>
                             </Input>
                             <Button text="Add New" icon="sap-icon://add" type="Accept" press="onNewPress" />
-                            <Button text="Delete" icon="sap-icon://delete" press="_onDelete" type="Reject" visible="{oGlobleModel>/deleteButton}" />
+                            <Button text="Delete" icon="sap-icon://delete" press="_onDelete" type="Reject" visible="{mainModel>/deleteButton}" />
                         </content>
                     </OverflowToolbar>
                 </Table:extension>
@@ -658,7 +658,7 @@
                 </Table:columns>
             </Table:Table>
 
-            <VBox visible="{oGlobleModel>/zoho/zohoVisible}">
+            <VBox visible="{mainModel>/zoho/zohoVisible}">
                 <fb:FilterBar id="ZohoTableFilter" persistencyKey="myPersKey" useToolbar="false" search="onZohoFiterSearch" showFilterConfiguration="false" >
                     <fb:filterGroupItems>
                         <fb:FilterGroupItem
@@ -670,9 +670,9 @@
                             <fb:control>
                                 <Input id="zohoProjectIDInput"
                                     placeholder="{i18n.main>zoho.text.Projid}"
-                                    value="{oGlobleModel>/zoho/zohoFilter/Projid}"
+                                    value="{mainModel>/zoho/zohoFilter/Projid}"
                                     submit="onZohoFiterSearch"
-                                    valueState="{oGlobleModel>/zoho/zohoFilterFieldState/Projid}"
+                                    valueState="{mainModel>/zoho/zohoFilterFieldState/Projid}"
                                     valueStateText="{i18n.main>zoho.filter.valuestate.projid}"
                                     change="onZohoFilterFieldChange" />
                             </fb:control>
@@ -688,8 +688,8 @@
                                 <Input id="zohoOppurtunityFilterInput"
                                     placeholder="Oppurtunity"
                                     submit="onZohoFiterSearch"
-                                    value="{oGlobleModel>/zoho/zohoFilter/Oppurtunity}"
-                                    valueState="{oGlobleModel>/zoho/zohoFilterFieldState/Oppurtunity}"
+                                    value="{mainModel>/zoho/zohoFilter/Oppurtunity}"
+                                    valueState="{mainModel>/zoho/zohoFilterFieldState/Oppurtunity}"
                                     valueStateText="{i18n.main>zoho.filter.valuestate.oppurtunity}"
                                     change="onZohoFilterFieldChange" />
                             </fb:control>
@@ -715,7 +715,7 @@
                                     suggestionRows="{JSONModelForSuggest_custCode>/}"
                                     suggestionItemSelected="onCustomerCodeInputSuggestionSelect"
                                     submit="onZohoFiterSearch"
-                                    value="{oGlobleModel>/zoho/zohoFilter/Customer}" >
+                                    value="{mainModel>/zoho/zohoFilter/Customer}" >
                                     <suggestionColumns>
                                         <Column popinDisplay="Inline" demandPopin="true" >
                                             <Label text="{i18n.main>zoho.text.CustCode}" />
@@ -747,7 +747,7 @@
                                     placeholder="{i18n.main>zoho.text.SalesOffice}"
                                     showValueHelp="true"
                                     valueHelpRequest="onSalesOfficeHelp"
-                                    value="{oGlobleModel>/zoho/zohoFilter/SalesOffice}"
+                                    value="{mainModel>/zoho/zohoFilter/SalesOffice}"
                                     submit="onZohoFiterSearch"
                                     textFormatMode="ValueKey"
                                     showSuggestion="true"
@@ -787,7 +787,7 @@
                         </fb:FilterGroupItem>
                     </fb:filterGroupItems>
                 </fb:FilterBar>
-                <Table:Table rows="{oGlobleModel>/zoho/zohoData}">
+                <Table:Table id="zohoTable" rows="{mainModel>/zoho/zohoData}" rowSelectionChange="zohoTableSelectionChange" >
                     <Table:extension>
                         <OverflowToolbar design="Transparent" width="100%">
                             <content>
@@ -807,37 +807,37 @@
                         <Table:Column id="zohoTableProjid" sortProperty="Projid" >
                             <Label text="{i18n.main>zoho.text.Projid}" wrapping="true" />
                             <Table:template>
-                                <Text text="{oGlobleModel>Projid}" wrapping="false" />
+                                <Text text="{mainModel>Projid}" wrapping="false" />
                             </Table:template>
                         </Table:Column>
                         <Table:Column id="zohoTableOppurtunity" sortProperty="Oppu" >
                             <Label text="{i18n.main>zoho.text.Oppurtunity}" wrapping="true" />
                             <Table:template>
-                                <Text text="{oGlobleModel>Oppu}" wrapping="false" />
+                                <Text text="{mainModel>Oppu}" wrapping="false" />
                             </Table:template>
                         </Table:Column>
                         <Table:Column id="zohoTableCustName" sortProperty="Name" >
                             <Label text="{i18n.main>zoho.text.CustName}" wrapping="true" />
                             <Table:template>
-                                <Text text="{oGlobleModel>Name}" wrapping="false" />
+                                <Text text="{mainModel>Name}" wrapping="false" />
                             </Table:template>
                         </Table:Column>
                         <Table:Column id="zohoTableCustCode" sortProperty="Kunnr" >
                             <Label text="{i18n.main>zoho.text.CustCode}" wrapping="true" />
                             <Table:template>
-                                <Text text="{oGlobleModel>Kunnr}" wrapping="false" />
+                                <Text text="{mainModel>Kunnr}" wrapping="false" />
                             </Table:template>
                         </Table:Column>
                         <Table:Column id="zohoTableDivision" sortProperty="Spart" >
                             <Label text="{i18n.main>zoho.text.Vertical}" wrapping="true" />
                             <Table:template>
-                                <Text text="{oGlobleModel>Spart}" wrapping="false" />
+                                <Text text="{mainModel>Spart}" wrapping="false" />
                             </Table:template>
                         </Table:Column>
                         <Table:Column id="zohoTableSalesOffice" sortProperty="Vkbur" >
                             <Label text="{i18n.main>zoho.text.SalesOffice}" wrapping="true" />
                             <Table:template>
-                                <Text text="{oGlobleModel>Projid}" wrapping="false" />
+                                <Text text="{mainModel>Projid}" wrapping="false" />
                             </Table:template>
                         </Table:Column>
                     </Table:columns>

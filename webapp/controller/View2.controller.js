@@ -134,7 +134,7 @@ sap.ui.define(
           },
   
           onRouteMatched: function (oEvent) {
-            var oGlobalModel = {
+            var oMainModel = {
               Editable: false,
               Required: false,
               createCopy: false,
@@ -144,7 +144,7 @@ sap.ui.define(
             var oEditableFields = {
               Editable: false,
             };
-            var oModelGlobalModel = new JSONModel(oGlobalModel);
+            var oModelGlobalModel = new JSONModel(oMainModel);
             this.getView().setModel(oModelGlobalModel, "GlobalModel");
             var oModelGlobalEditable = new JSONModel(oEditableFields);
             this.getView().setModel(oModelGlobalEditable, "GlobalEditableModel");
