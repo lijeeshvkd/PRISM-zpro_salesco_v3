@@ -152,6 +152,7 @@ sap.ui.define(
 							dataModelPayload.header.Soname = oSeletectedZohoItem.Soname || '';
 							dataModelPayload.header.Spart = oSeletectedZohoItem.Spart || '';
 						} else {
+							this.clearRequestPayload();
 							dataModelPayload.header.Kunnr = '';
 							dataModelPayload.header.Oppu = '';
 							dataModelPayload.header.Vkbur = '';
@@ -542,6 +543,28 @@ sap.ui.define(
 							}
 						}.bind(this),
 					});
+				},
+
+				clearRequestPayload: function() {
+					var oRequestPayloadHeader = {
+						"Pafvto": null,
+						"Kunnr": "",
+						"Pafvfrm": null,
+						"Ti": "1",
+						"Gst": "18",
+						"Name": "",
+						"Action": "",
+						"Zterm": "",
+						"Validity": "",
+						"Aufnr": "",
+						"Vtweg": "",
+						"Vkbur": "",
+						"Spart": "",
+						"ET_SALES_COORD_ISET": {
+						  "results": []
+						}
+					}
+					this.getView().getModel("payload").setProperty("/header", oRequestPayloadHeader);
 				},
 
 				onClear: function () {
