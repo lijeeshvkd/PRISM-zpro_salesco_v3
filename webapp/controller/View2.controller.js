@@ -96,9 +96,26 @@ sap.ui.define(
 					this.getView().setModel(new JSONModel({}), "JSONModelPayload");
 				},
 
+				_readOPHeaderWithItems: function(sOppu, fnReturn) {
+					var sPath = `/ET_OP_HEADSet('${sOppu}')`
+					this.getView().getModel().read(sPath, {
+						urlParameters: {
+							$expand: "ET_OP_ITEMSet",
+						},
+						success: function (Data) {
+							fnReturn(Data);
+						}.bind(this),
+						error: function(oError) {
+							fnReturn(null);
+						}.bind(this)
+					});
+				},
+
 				onRouteMatched: function (oEvent) {
-					var oGlobalModel = this.getView().getModel("globalModel"),
+					var oArguments = oEvent.getParameter("arguments"),
+						oGlobalModel = this.getView().getModel("globalModel"),
 						oSeletectedZohoItem = oGlobalModel.getProperty("/selectedZoho");
+					// this._readItems(oSeletectedZohoItem);
 					var oViewlModelDate = {
 						Editable: false,
 						Required: false,
@@ -144,21 +161,34 @@ sap.ui.define(
 						this.clearRequestPayload();
 						var dataModelPayload = this.getView().getModel("payload").getData();
 
-						// DEFAULT VALUES FROM ZOHO SELECTION
-						if (oSeletectedZohoItem && Object.keys(oSeletectedZohoItem).length) {
-							dataModelPayload.header.Kunnr = oSeletectedZohoItem.Kunnr || '';
-							dataModelPayload.header.Oppu = oSeletectedZohoItem.Oppu || '';
-							dataModelPayload.header.Vkbur = oSeletectedZohoItem.Vkbur.trim() || '';
-							dataModelPayload.header.Soname = oSeletectedZohoItem.Soname || '';
-							dataModelPayload.header.Spart = oSeletectedZohoItem.Spart || '';
-						}
-						// END OF DEFAULT VALUES FROM ZOHO SELECTION
-
 						dataModelPayload.header.ET_SALES_COORD_ISET.results = [];
 						dataModelPayload.header.ET_SALES_COORD_ISET.results.push(
 							dataModelPayload.item
 						);
-						this.getView().getModel("JSONModelPayload").setData(dataModelPayload.header);
+
+						if (oArguments.Oppu) {
+							this._readOPHeaderWithItems(oArguments.Oppu, function(oData) {
+								if (oData) {
+									dataModelPayload.header.Kunnr = oData.Kunnr || '';
+									dataModelPayload.header.Name = oData.Name || '';
+									dataModelPayload.header.Oppu = oData.Oppu || '';
+									dataModelPayload.header.Vkbur = oData.Vkbur.trim() || '';
+									dataModelPayload.header.Soname = oData.Soname || '';
+									dataModelPayload.header.Spart = oData.Spart || '';
+								}
+								this.getView().getModel("JSONModelPayload").setData(dataModelPayload.header);
+							}.bind(this));
+
+						} else {
+							this.getView().getModel("JSONModelPayload").setData(dataModelPayload.header);
+						}
+						// DEFAULT VALUES FROM ZOHO SELECTION
+						if (oSeletectedZohoItem && Object.keys(oSeletectedZohoItem).length) {
+							
+						}
+						// END OF DEFAULT VALUES FROM ZOHO SELECTION
+
+						
 
 						//this.onClear();
 						this.getView().byId("ObjectPageLayout").getHeaderTitle().setObjectTitle("Generate New Request");

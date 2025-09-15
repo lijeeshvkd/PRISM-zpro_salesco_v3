@@ -614,19 +614,19 @@ sap.ui.define(
 
 				var oZohoTable = this.byId(sap.ui.core.Fragment.createId("id.tableProductDetails.Fragment", "zohoTable")),
 					oSeletedItem = {},
-					oGlobalModel = this.getView().getModel("globalModel");
+					oGlobalModel = this.getView().getModel("globalModel"),
+					urlParams = {
+						ID: "null"
+					};
 
 				if (oZohoTable.getSelectedIndices().length) {
 					oSeletedItem = oZohoTable.getRows()[oZohoTable.getSelectedIndices()[0]].getBindingContext("mainModel").getObject();
+					urlParams.Oppu = oSeletedItem.Oppu;
 				}
 					
-					
-
 				oGlobalModel.setProperty("/selectedZoho", oSeletedItem);
 				this.oRouter = this.getOwnerComponent().getRouter();
-				this.oRouter.navTo("page2", {
-					ID: "null",
-				});
+				this.oRouter.navTo("page2", urlParams);
 			},
 
 			zohoTableSelectionChange: function() {
