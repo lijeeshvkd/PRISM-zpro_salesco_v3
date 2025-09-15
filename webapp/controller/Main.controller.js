@@ -56,21 +56,6 @@ sap.ui.define(
 				this.getView().setModel(new JSONModel(oProperties), "mainModel");
 				this.getView().setModel(new JSONModel({}), "count");
 			},
-
-			_readSohoProducts: function() {
-				var sPath = "/ET_OP_HEADSet"
-				this.getView().getModel().read(sPath, {
-					urlParameters: {
-						$expand: "OpHeaderToItem",
-					},
-					success: function(oData) {
-						this.getView().getModel("mainModel").setProperty("/zoho/zohoProducts", oData.results);
-					}.bind(this),
-					error: function(oError) {
-
-					}
-				});
-			},
 			
 			// Start: Sales Office
 			onSalesOfficeHelp: function () {
@@ -391,7 +376,6 @@ sap.ui.define(
 			},
 
 			_onRouteMatched: function (oEvent) {
-				this._readSohoProducts();
 				var oGlobalModel = this.getView().getModel("globalModel");
 				oGlobalModel.setProperty("/selectedZoho", {});
 				this.sID = oEvent.getParameter("arguments").ID;

@@ -98,15 +98,18 @@ sap.ui.define(
 
 				_readOPHeaderWithItems: function(sOppu, fnReturn) {
 					var sPath = `/ET_OP_HEADSet('${sOppu}')`
+					this.getView().setBusy(true);
 					this.getView().getModel().read(sPath, {
 						urlParameters: {
 							$expand: "ET_OP_ITEMSet",
 						},
 						success: function (Data) {
 							fnReturn(Data);
+							this.getView().setBusy(false);
 						}.bind(this),
 						error: function(oError) {
 							fnReturn(null);
+							this.getView().setBusy(false);
 						}.bind(this)
 					});
 				},
@@ -162,11 +165,10 @@ sap.ui.define(
 						var dataModelPayload = this.getView().getModel("payload").getData();
 
 						dataModelPayload.header.ET_SALES_COORD_ISET.results = [];
-						dataModelPayload.header.ET_SALES_COORD_ISET.results.push(
-							dataModelPayload.item
-						);
 
+						// DEFAULT VALUES FROM ZOHO SELECTION
 						if (oArguments.Oppu) {
+							var bIsItemAvail = false;
 							this._readOPHeaderWithItems(oArguments.Oppu, function(oData) {
 								if (oData) {
 									dataModelPayload.header.Kunnr = oData.Kunnr || '';
@@ -175,21 +177,27 @@ sap.ui.define(
 									dataModelPayload.header.Vkbur = oData.Vkbur.trim() || '';
 									dataModelPayload.header.Soname = oData.Soname || '';
 									dataModelPayload.header.Spart = oData.Spart || '';
+
+									if (oData && oData.ET_OP_ITEMSet && oData.ET_OP_ITEMSet.results.length) {
+										bIsItemAvail = true;
+										dataModelPayload.header.ET_SALES_COORD_ISET.results = oData.ET_OP_ITEMSet.results;
+									} else {
+										dataModelPayload.header.ET_SALES_COORD_ISET.results.push(dataModelPayload.item);
+									}
 								}
+
 								this.getView().getModel("JSONModelPayload").setData(dataModelPayload.header);
+								if (bIsItemAvail) {
+									validation.headerPayloadValidation(this, true);
+								}
 							}.bind(this));
 
 						} else {
+							dataModelPayload.header.ET_SALES_COORD_ISET.results.push(dataModelPayload.item);
 							this.getView().getModel("JSONModelPayload").setData(dataModelPayload.header);
 						}
-						// DEFAULT VALUES FROM ZOHO SELECTION
-						if (oSeletectedZohoItem && Object.keys(oSeletectedZohoItem).length) {
-							
-						}
 						// END OF DEFAULT VALUES FROM ZOHO SELECTION
-
 						
-
 						//this.onClear();
 						this.getView().byId("ObjectPageLayout").getHeaderTitle().setObjectTitle("Generate New Request");
 						var oDOAAAttachmentModel = new JSONModel([]);
