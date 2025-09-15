@@ -56,21 +56,6 @@ sap.ui.define(
 				this.getView().setModel(new JSONModel(oProperties), "mainModel");
 				this.getView().setModel(new JSONModel({}), "count");
 			},
-
-			_readSohoProducts: function() {
-				var sPath = "/ET_OP_HEADSet"
-				this.getView().getModel().read(sPath, {
-					urlParameters: {
-						$expand: "OpHeaderToItem",
-					},
-					success: function(oData) {
-						this.getView().getModel("mainModel").setProperty("/zoho/zohoProducts", oData.results);
-					}.bind(this),
-					error: function(oError) {
-
-					}
-				});
-			},
 			
 			// Start: Sales Office
 			onSalesOfficeHelp: function () {
@@ -287,6 +272,7 @@ sap.ui.define(
 						success: function (Data) {
 							this.getView().setBusy(false);
 							oMainModel.setProperty("/zoho/zohoData", Data.results);
+							this.getView().getModel("count").setProperty("/Zoho", Data.results.length);
 						}.bind(this),
 						error: function (oError) {
 							this.getView().setBusy(false);
@@ -390,7 +376,6 @@ sap.ui.define(
 			},
 
 			_onRouteMatched: function (oEvent) {
-				this._readSohoProducts();
 				var oGlobalModel = this.getView().getModel("globalModel");
 				oGlobalModel.setProperty("/selectedZoho", {});
 				this.sID = oEvent.getParameter("arguments").ID;
@@ -613,19 +598,19 @@ sap.ui.define(
 
 				var oZohoTable = this.byId(sap.ui.core.Fragment.createId("id.tableProductDetails.Fragment", "zohoTable")),
 					oSeletedItem = {},
-					oGlobalModel = this.getView().getModel("globalModel");
+					oGlobalModel = this.getView().getModel("globalModel"),
+					urlParams = {
+						ID: "null"
+					};
 
 				if (oZohoTable.getSelectedIndices().length) {
 					oSeletedItem = oZohoTable.getRows()[oZohoTable.getSelectedIndices()[0]].getBindingContext("mainModel").getObject();
+					urlParams.Oppu = oSeletedItem.Oppu;
 				}
 					
-					
-
 				oGlobalModel.setProperty("/selectedZoho", oSeletedItem);
 				this.oRouter = this.getOwnerComponent().getRouter();
-				this.oRouter.navTo("page2", {
-					ID: "null",
-				});
+				this.oRouter.navTo("page2", urlParams);
 			},
 
 			zohoTableSelectionChange: function() {

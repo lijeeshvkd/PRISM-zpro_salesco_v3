@@ -175,7 +175,7 @@
 				},
 				{
 					"name": "page2",
-					"pattern": "page2/{ID}",
+					"pattern": "page2/{ID}/:Oppu:",
 					"target": [
 						"page2"
 					]

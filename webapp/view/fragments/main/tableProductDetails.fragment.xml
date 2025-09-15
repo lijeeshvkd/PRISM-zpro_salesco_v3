@@ -24,7 +24,7 @@
                 id="id.main.ITFZoho"
                 icon="sap-icon://mirrored-task-circle"
                 iconColor="Contrast"
-                count=""
+                count="{count>/Zoho}"
                 text="{i18n.main>main.IconTabFilter.zoho}"
                 key="Zoho"
             />
@@ -657,7 +657,9 @@
 
                 </Table:columns>
             </Table:Table>
-
+            <!-- End: tableSort001 --> 
+            
+            <!-- Zoho Content -->
             <VBox visible="{mainModel>/zoho/zohoVisible}">
                 <fb:FilterBar id="ZohoTableFilter" persistencyKey="myPersKey" useToolbar="false" search="onZohoFiterSearch" showFilterConfiguration="false" >
                     <fb:filterGroupItems>
@@ -843,7 +845,7 @@
                     </Table:columns>
                 </Table:Table>
             </VBox>
-            <!-- End: tableSort001 --> 
+            <!-- End of Zoho Content -->
         </content>
     </IconTabBar>
 </core:FragmentDefinition>

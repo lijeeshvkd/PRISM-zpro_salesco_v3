@@ -44,8 +44,7 @@
             id="idV2SC"
             width="100%"
             vertical="true"
-            focusable="true"
-        >
+            focusable="true" >
             <!-- items="{path: '/ET_SALES_COORD_HEADERSet', 
                 filters: [{
                     path:'Pafno',
@@ -58,8 +57,7 @@
             <Table
                 id="idV2TblProducts"
                 items="{JSONModelPayload>/ET_SALES_COORD_ISET/results}"
-                sticky="ColumnHeaders,HeaderToolbar"
-            >
+                sticky="ColumnHeaders,HeaderToolbar" >
                 <headerToolbar>
                     <Toolbar id="idV2TB">
                         <ToolbarSpacer id="idV2TBS1" />
