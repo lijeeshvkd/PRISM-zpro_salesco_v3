@@ -358,6 +358,31 @@
                             text="{i18nV2>view2.table.column.text.remarks}"
                         />
                     </Column>
+
+                    <Column id="idV2TblClmReqDis"
+                        minScreenWidth="Desktop"
+                        demandPopin="true"
+                        hAlign="Center"
+                        width="10rem"
+                        visible="{= ${GlobalEditableModel>/Editable} === false &amp;&amp; ${JSONModelPayload>/Vtweg} === '19' }">
+                        <Label
+                            id="idV2TxtTblClmReqDisc"
+                            text="{i18nV2>view2.table.column.text.reqdisc}"
+                        />
+                    </Column>
+
+                    <Column id="idV2TblClmReqDis1"
+                        minScreenWidth="Desktop"
+                        demandPopin="true"
+                        hAlign="Center"
+                        width="10rem"
+                        visible="{= ${GlobalEditableModel>/Editable} === false &amp;&amp; ${JSONModelPayload>/Vtweg} !== '19' }">
+                        <Label
+                            id="idV2TxtTblClmReqDisc1"
+                            text="{i18nV2>view2.table.column.text.reqdisc}"
+                        />
+                    </Column>
+                    
                     <Column
                         id="idV2TblClmDel"
                         minScreenWidth="Desktop"
@@ -486,7 +511,7 @@
                                 id="idV2TblCLIInpTotVol"
                                 maxLength="10"
                                 liveChange="onNumberValidation"
-                                value="{JSONModelPayload>TotalVol}"
+                                value="{JSONModelPayload>Totalvol}"
                                 editable="{GlobalEditableModel>/Editable}"
                             />
                             <!-- 7 -->
@@ -614,11 +639,27 @@
                                 editable="{GlobalEditableModel>/Editable}"
                             />
                             <!-- 21 non mandatory-->
+
+                            <Input
+                                id="idV2TblCLInpOrgDisv"
+                                value="{JSONModelPayload>Sbremark}"
+                                editable="false"
+                            />
+
                             <Input
                                 id="idV2TblCLInpRemarks"
-                                value="{JSONModelPayload>Sbremark}"
+                                value="{JSONModelPayload>Discbdiff}"
                                 editable="{GlobalEditableModel>/Editable}"
+                                visible="{= ${GlobalEditableModel>/Editable} === false &amp;&amp; ${JSONModelPayload>/Vtweg} === '19' }"
                             />
+
+                            <Input
+                                id="idV2TblCLInpOrgDisv1"
+                                value="{JSONModelPayload>Discdiff}"
+                                editable="false"
+                                visible="{= ${GlobalEditableModel>/Editable} === false &amp;&amp; ${JSONModelPayload>/Vtweg} !== '19' }"
+                            />
+
                             <!-- 22 Button-->
                             <Button
                                 id="idV2TblBtnDel"

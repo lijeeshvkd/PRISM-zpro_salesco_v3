@@ -177,6 +177,11 @@ sap.ui.define(
 									dataModelPayload.header.Vkbur = oData.Vkbur.trim() || '';
 									dataModelPayload.header.Soname = oData.Soname || '';
 									dataModelPayload.header.Spart = oData.Spart || '';
+									dataModelPayload.header.Vtweg = oData.Vtweg || '';
+									dataModelPayload.header.Zterm = oData.Zterm || '';
+									dataModelPayload.header.Specid = oData.Specid || '';
+									dataModelPayload.header.Spec = oData.Spec || '';
+									dataModelPayload.header.Proj = oData.Proj || '';
 
 									if (oData && oData.ET_OP_ITEMSet && oData.ET_OP_ITEMSet.results.length) {
 										bIsItemAvail = true;
