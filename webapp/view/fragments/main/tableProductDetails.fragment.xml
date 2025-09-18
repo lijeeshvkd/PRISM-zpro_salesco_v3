@@ -639,7 +639,7 @@
                         </Table:template>
                     </Table:Column>
 
-                     <Table:Column id="actalPrice" sortProperty="actualDis" width="6rem" >
+                     <!-- <Table:Column id="actalPrice" sortProperty="actualDis" width="6rem" >
                         <Label text="{i18n.main>main.table.column.text.actualDis}" wrapping="true" />
                         <Table:template>
                             <tnt:InfoLabel text="{ parts: ['ModelForTable>actualDis', 'ModelForTable>Erdat'], formatter: 'sap.formatter.getStatus' }"
@@ -653,7 +653,7 @@
                             <tnt:InfoLabel text="{ parts: ['ModelForTable>approveDis', 'ModelForTable>Erdat'], formatter: 'sap.formatter.getStatus' }"
                                 colorScheme="{ parts: ['ModelForTable>approveDis'], formatter: 'sap.formatter.getStatusColor' }" />
                         </Table:template>
-                    </Table:Column>
+                    </Table:Column> -->
 
                 </Table:columns>
             </Table:Table>
