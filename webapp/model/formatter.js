@@ -129,7 +129,7 @@ sap.formatter = {
         } else if (sValue === "40") {
             return "Endura"
         }
-    }
+    },
     // nonVisible: function (sVal) {
     //     if (sVal) {
     //         return !sVal;
@@ -137,5 +137,23 @@ sap.formatter = {
     //         return !sVal;
     //     }
     // }
+
+    getReqDiscnt1Visile: function(bIsEditable, sDistChannel) {
+        var bReturn = false;
+        if (!bIsEditable && sDistChannel === "19") {
+            bReturn = true;
+        }
+
+        return bReturn;
+    },
+
+    getReqDiscnt2Visile: function(bIsEditable, sDistChannel) {
+        var bReturn = false;
+        if (!bIsEditable && sDistChannel !== "19") {
+            bReturn = true;
+        }
+
+        return bReturn;
+    }
 
 };
