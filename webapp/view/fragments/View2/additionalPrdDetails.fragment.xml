@@ -358,6 +358,31 @@
                             text="{i18nV2>view2.table.column.text.remarks}"
                         />
                     </Column>
+
+                    <Column id="idV2TblClmReqDis"
+                        minScreenWidth="Desktop"
+                        demandPopin="true"
+                        hAlign="Center"
+                        width="10rem"
+                        visible="{ parts: ['GlobalEditableModel>/Editable', 'JSONModelPayload>/Vtweg'], formatter: 'sap.formatter.getReqDiscnt1Visile'}">
+                        <Label
+                            id="idV2TxtTblClmReqDisc"
+                            text="{i18nV2>view2.table.column.text.reqdisc}"
+                        />
+                    </Column>
+
+                    <Column id="idV2TblClmReqDis1"
+                        minScreenWidth="Desktop"
+                        demandPopin="true"
+                        hAlign="Center"
+                        width="10rem"
+                        visible="{ parts: ['GlobalEditableModel>/Editable', 'JSONModelPayload>/Vtweg'], formatter: 'sap.formatter.getReqDiscnt2Visile'}">
+                        <Label
+                            id="idV2TxtTblClmReqDisc1"
+                            text="{i18nV2>view2.table.column.text.reqdisc}"
+                        />
+                    </Column>
+                    
                     <Column
                         id="idV2TblClmDel"
                         minScreenWidth="Desktop"
@@ -614,11 +639,27 @@
                                 editable="{GlobalEditableModel>/Editable}"
                             />
                             <!-- 21 non mandatory-->
+
+                            <Input
+                                id="idV2TblCLInpOrgDisv"
+                                value="{JSONModelPayload>Sbremark}"
+                                editable="false"
+                            />
+
                             <Input
                                 id="idV2TblCLInpRemarks"
-                                value="{JSONModelPayload>Sbremark}"
+                                value="{JSONModelPayload>Discbdiff}"
                                 editable="{GlobalEditableModel>/Editable}"
+                                visible="{ parts: ['GlobalEditableModel>/Editable', 'JSONModelPayload>/Vtweg'], formatter: 'sap.formatter.getReqDiscnt1Visile'}"
                             />
+
+                            <Input
+                                id="idV2TblCLInpOrgDisv1"
+                                value="{JSONModelPayload>Discdiff}"
+                                editable="false"
+                                visible="{ parts: ['GlobalEditableModel>/Editable', 'JSONModelPayload>/Vtweg'], formatter: 'sap.formatter.getReqDiscnt2Visile'}"
+                            />
+
                             <!-- 22 Button-->
                             <Button
                                 id="idV2TblBtnDel"

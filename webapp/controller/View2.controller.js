@@ -177,6 +177,11 @@ sap.ui.define(
 									dataModelPayload.header.Vkbur = oData.Vkbur.trim() || '';
 									dataModelPayload.header.Soname = oData.Soname || '';
 									dataModelPayload.header.Spart = oData.Spart || '';
+									dataModelPayload.header.Vtweg = oData.Vtweg || '';
+									dataModelPayload.header.Zterm = oData.Zterm || '';
+									dataModelPayload.header.Specid = oData.Specid || '';
+									dataModelPayload.header.Spec = oData.Spec || '';
+									dataModelPayload.header.Proj = oData.Proj || '';
 
 									if (oData && oData.ET_OP_ITEMSet && oData.ET_OP_ITEMSet.results.length) {
 										bIsItemAvail = true;
@@ -1527,61 +1532,34 @@ sap.ui.define(
 						var vStatus = this.onValidate();
 						if (vStatus != 0) {
 							// var vSalesOffice = this.byId(sap.ui.core.Fragment.createId("idV2FragGenInfo", "idV2InpSalesOffice")).getValue().match(/\d+/)[0];
-							var vSalesOffice = this.byId(
-								sap.ui.core.Fragment.createId(
-									"idV2FragGenInfo",
-									"idV2InpSalesOffice"
-								)
-							).getValue();
-							if (
-								!this.getView().getModel("JSONModelPayload").getData().Vkbur
-							) {
-								this.getView().getModel("JSONModelPayload").getData().Vkbur =
-									vSalesOffice;
+							
+							var vSalesOffice = this.byId(sap.ui.core.Fragment.createId("idV2FragGenInfo", "idV2InpSalesOffice")).getValue();
+							if (!this.getView().getModel("JSONModelPayload").getData().Vkbur) {
+								this.getView().getModel("JSONModelPayload").getData().Vkbur = vSalesOffice;
 							}
 							// var vSalesOfficeBE = this.getView().getModel("JSONModelPayload").getData().Vkbur
 
 							if (vSalesOffice) {
-								this.byId(
-									sap.ui.core.Fragment.createId(
-										"idV2FragGenInfo",
-										"idV2InpSalesOffice"
-									)
-								).setValueState("None");
+								this.byId(sap.ui.core.Fragment.createId("idV2FragGenInfo", "idV2InpSalesOffice")).setValueState("None");
 								//
-								var headerValidationStatus =
-									validation.headerPayloadValidation(this);
+								var headerValidationStatus = validation.headerPayloadValidation(this);
 
 
-								var paymentTerm = this.byId(
-									sap.ui.core.Fragment.createId(
-										"idV2FragGenInfo",
-										"idV2SLPaymentTerm"
-									)
-								).setValueState("Error").getSelectedKey();
+								var paymentTerm = this.byId(sap.ui.core.Fragment.createId("idV2FragGenInfo","idV2SLPaymentTerm")).setValueState("Error").getSelectedKey();
+								
 								if (!paymentTerm) {
 									MessageBox.error("Please enter Payment Term");
-									this.byId(
-										sap.ui.core.Fragment.createId(
-											"idV2FragGenInfo",
-											"idV2SLPaymentTerm"
-										)
-									).setValueState("Error");
+									this.byId(sap.ui.core.Fragment.createId("idV2FragGenInfo", "idV2SLPaymentTerm")).setValueState("Error");
 								} else {
-									this.byId(
-										sap.ui.core.Fragment.createId(
-											"idV2FragGenInfo",
-											"idV2SLPaymentTerm"
-										)
-									).setValueState("None");
+									this.byId(sap.ui.core.Fragment.createId("idV2FragGenInfo", "idV2SLPaymentTerm")).setValueState("None");
+									
 									if (headerValidationStatus === 1) {
 										// Date format corrector
-										var data = this.getView()
-											.getModel("JSONModelPayload")
-											.getData();
+										var data = this.getView().getModel("JSONModelPayload").getData();
 										data.Pafvto = new Date(data.Pafvto);
 										data.Pafvfrm = new Date(data.Pafvfrm);
 										var aItems = data.ET_SALES_COORD_ISET.results;
+
 										for (let index = 0; index < aItems.length; index++) {
 											for (const key in aItems[index]) {
 												if (Object.hasOwnProperty.call(aItems[index], key)) {
@@ -1592,16 +1570,10 @@ sap.ui.define(
 											}
 										}
 										this.getView().getModel("JSONModelPayload").refresh(true);
-										var aData = this.getView()
-											.getModel("JSONModelPayload")
-											.getData().ET_SALES_COORD_ISET.results;
+										var aData = this.getView().getModel("JSONModelPayload").getData().ET_SALES_COORD_ISET.results;
 
-										var itemValidationStatus =
-											validation.itemsPayloadValidation(
-												aData,
-												this,
-												"Generate"
-											);
+										var itemValidationStatus = validation.itemsPayloadValidation(aData, this,"Generate");
+										
 										if (itemValidationStatus === 1) {
 											this.getView().byId("idV2OPSAttach").setVisible(true);
 											this.getView()

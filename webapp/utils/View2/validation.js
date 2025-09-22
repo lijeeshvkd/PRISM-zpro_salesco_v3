@@ -182,65 +182,33 @@ sap.ui.define(["sap/m/MessageBox"], function (MessageBox) {
 			var vTemp = 0;
 
 			for (var j = 0; j < oTable.getAggregation("items").length; j++) {
-				for (
-					let k = 0;
-					k < oTable.getAggregation("items")[j].getAggregation("cells").length;
-					k++
-				) {
-					if (
-						k === 2 ||
+				
+				for (let k = 0; k < oTable.getAggregation("items")[j].getAggregation("cells").length; k++) {
+					if ( k === 2 ||
 						k === 14 ||
 						k === 15 ||
 						k === 16 ||
 						k === 19 ||
 						k === 20 ||
 						k === 21 ||
-						k === 22
-					) {
+						k === 22 ||
+						k === 24 ) {
 						// Non mandatory items
 					} else if (k === 7 || k === 8 || k === 9) {
 						// Select
 
-						if (
-							oTable
-								.getAggregation("items")
-							[j].getAggregation("cells")
-							[k].getSelectedKey() === ""
-						) {
-							oTable
-								.getAggregation("items")
-							[j].getAggregation("cells")
-							[k].setValueState("Error");
-							oTable
-								.getAggregation("items")
-							[j].getAggregation("cells")
-							[k].setValueStateText("Enter value");
+						if (oTable.getAggregation("items")[j].getAggregation("cells")[k].getSelectedKey() === "") {
+							oTable.getAggregation("items")[j].getAggregation("cells")[k].setValueState("Error");
+							oTable.getAggregation("items")[j].getAggregation("cells")[k].setValueStateText("Enter value");
 						} else {
-							oTable
-								.getAggregation("items")
-							[j].getAggregation("cells")
-							[k].setValueState("None");
+							oTable.getAggregation("items")[j].getAggregation("cells")[k].setValueState("None");
 						}
 					} else {
-						if (
-							oTable
-								.getAggregation("items")
-							[j].getAggregation("cells")
-							[k].getValue() === ""
-						) {
-							oTable
-								.getAggregation("items")
-							[j].getAggregation("cells")
-							[k].setValueState("Error");
-							oTable
-								.getAggregation("items")
-							[j].getAggregation("cells")
-							[k].setValueStateText("Enter value");
+						if (oTable.getAggregation("items")[j].getAggregation("cells")[k].getValue() === "") {
+							oTable.getAggregation("items")[j].getAggregation("cells")[k].setValueState("Error");
+							oTable.getAggregation("items")[j].getAggregation("cells")[k].setValueStateText("Enter value");
 						} else {
-							oTable
-								.getAggregation("items")
-							[j].getAggregation("cells")
-							[k].setValueState("None");
+							oTable.getAggregation("items")[j].getAggregation("cells")[k].setValueState("None");
 						}
 					}
 				}
