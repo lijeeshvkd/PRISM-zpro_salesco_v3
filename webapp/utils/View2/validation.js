@@ -184,7 +184,7 @@ sap.ui.define(["sap/m/MessageBox"], function (MessageBox) {
 			for (var j = 0; j < oTable.getAggregation("items").length; j++) {
 				
 				for (let k = 0; k < oTable.getAggregation("items")[j].getAggregation("cells").length; k++) {
-					if ( k === 2 ||
+					if ( k === 1 ||
 						k === 14 ||
 						k === 15 ||
 						k === 16 ||
@@ -214,86 +214,87 @@ sap.ui.define(["sap/m/MessageBox"], function (MessageBox) {
 				}
 			}
 
-			for (var i = 0; i < aData.length; i++) {
+			var aItems = oTable.getAggregation("items");
+			for (var i = 0; i < aItems.length; i++) {
 				var vLine = i + 1;
-
-				if (!aData[i].Mfrgr) {
+				var oData = aItems[i].getBindingContext("JSONModelPayload").getObject();
+				if (!oData.Mfrgr) {
 					vTemp = 0;
 					this.itemsErrorMessage("Mfrgr", vLine, sAction);
-					i = aData.length;
+					i = aItems.length;
 				}
-				// else if (!aData[i].Szmm) {
+				// else if (!oData.Szmm) {
 				//   vTemp = 0;
 				//   this.itemsErrorMessage("Szmm", vLine, sAction);
 				// }
-				else if (!aData[i].Mvgr2) {
+				else if (!oData.Mvgr2) {
 					vTemp = 0;
 					this.itemsErrorMessage("Mvgr2", vLine, sAction);
-					i = aData.length;
-				} else if (!aData[i].Werks) {
+					i = aItems.length;
+				} else if (!oData.Werks) {
 					vTemp = 0;
 					this.itemsErrorMessage("Werks", vLine, sAction);
-					i = aData.length;
-				} else if (!aData[i].Prodh1) {
+					i = aItems.length;
+				} else if (!oData.Prodh1) {
 					vTemp = 0;
 					this.itemsErrorMessage("Prodh1", vLine, sAction);
-					i = aData.length;
-				} else if (!aData[i].CurVolFt) {
+					i = aItems.length;
+				} else if (!oData.CurVolFt) {
 					vTemp = 0;
 					this.itemsErrorMessage("CurVolFt", vLine, sAction);
-					i = aData.length;
-				} else if (!aData[i].TotalVol) {
+					i = aItems.length;
+				} else if (!oData.TotalVol) {
 					vTemp = 0;
 					this.itemsErrorMessage("TotalVol", vLine, sAction);
-					i = aData.length;
+					i = aItems.length;
 				}
-				// else if (!aData[i].Exfac) {
+				// else if (!oData[i].Exfac) {
 				//     vTemp = 0;
 				//     this.itemsErrorMessage('Exfac', vLine, sAction);
 				// }
-				else if (!aData[i].Disc) {
+				else if (!oData.Disc) {
 					vTemp = 0;
 					this.itemsErrorMessage("Disc", vLine, sAction);
-					i = aData.length;
+					i = aItems.length;
 
 					// else {
 					//     vTemp = 0;
 					//     this.itemsErrorMessage('Discb', vLine, sAction);
 					// }
 				}
-				// else if (!aData[i].Schemedisc) {
+				// else if (!oData[i].Schemedisc) {
 				//     vTemp = 0;
 				//     this.itemsErrorMessage('Schemedisc', vLine, sAction);
 				// }
-				// else if (!aData[i].SchemediscPer) {
+				// else if (!oData[i].SchemediscPer) {
 				//     vTemp = 0;
 				//     this.itemsErrorMessage('SchemediscPer', vLine, sAction);
 				// }
 
-				// else if (aData[i].Frgtsqft === '') { this.itemsErrorMessage('Frgtsqft', vLine, sAction); }
-				// else if (aData[i].Commbox === '') { this.itemsErrorMessage('Commbox', vLine, sAction); }
-				// else if (aData[i].Commboxp === '') { this.itemsErrorMessage('Commboxp', vLine, sAction); }
-				// else if (aData[i].Compname === '') { this.itemsErrorMessage('Compname', vLine, sAction); }
-				// else if (aData[i].Complanprice === '') { this.itemsErrorMessage('Complanprice', vLine, sAction); }
-				else if (!aData[i].Zzprodh4) {
+				// else if (oData[i].Frgtsqft === '') { this.itemsErrorMessage('Frgtsqft', vLine, sAction); }
+				// else if (oData[i].Commbox === '') { this.itemsErrorMessage('Commbox', vLine, sAction); }
+				// else if (oData[i].Commboxp === '') { this.itemsErrorMessage('Commboxp', vLine, sAction); }
+				// else if (oData[i].Compname === '') { this.itemsErrorMessage('Compname', vLine, sAction); }
+				// else if (oData[i].Complanprice === '') { this.itemsErrorMessage('Complanprice', vLine, sAction); }
+				else if (!oData.Zzprodh4) {
 					vTemp = 0;
 					this.itemsErrorMessage("Zzprodh4", vLine, sAction);
-					i = aData.length;
-				} else if (!aData[i].Mvgr5) {
+					i = aItems.length;
+				} else if (!oData.Mvgr5) {
 					vTemp = 0;
 					this.itemsErrorMessage("Mvgr5", vLine, sAction);
-					i = aData.length;
+					i = aItems.length;
 				}
-				// else if (!aData[i].Isexdep) {
+				// else if (!oData[i].Isexdep) {
 
 				//     vTemp = 0;
 				//     this.itemsErrorMessage('Isexdep', vLine, sAction);
 				// }
-				// else if (!aData[i].LandedPriceSqft) {
+				// else if (!oData[i].LandedPriceSqft) {
 				//     vTemp = 0;
 				//     this.itemsErrorMessage('LandedPriceSqft', vLine, sAction);
 				// }
-				// else if (aData[i].Nefsqft === '') {
+				// else if (oData[i].Nefsqft === '') {
 				//     vTemp = 0;
 				//     this.itemsErrorMessage('Nefsqft', vLine, sAction);
 				// }
