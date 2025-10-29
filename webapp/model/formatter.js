@@ -140,7 +140,7 @@ sap.formatter = {
 
     getReqDiscnt1Visile: function(bIsEditable, sDistChannel) {
         var bReturn = false;
-        if (!bIsEditable && sDistChannel === "19") {
+        if (!bIsEditable && (sDistChannel === '11' || sDistChannel === '17' || sDistChannel === '27')) {
             bReturn = true;
         }
 
@@ -149,11 +149,10 @@ sap.formatter = {
 
     getReqDiscnt2Visile: function(bIsEditable, sDistChannel) {
         var bReturn = false;
-        if (!bIsEditable && sDistChannel !== "19") {
+        if (!bIsEditable && (sDistChannel === '19' || sDistChannel === '15' || sDistChannel === '25' || sDistChannel === '29')) {
             bReturn = true;
         }
 
         return bReturn;
     }
-
 };

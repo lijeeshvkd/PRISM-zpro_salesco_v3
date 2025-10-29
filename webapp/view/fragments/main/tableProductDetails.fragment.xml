@@ -793,7 +793,7 @@
                     <Table:extension>
                         <OverflowToolbar design="Transparent" width="100%">
                             <content>
-                                <Title text="{i18n.main>main.table.zoho.title}" level="H2" />
+                                <!-- <Title text="{i18n.main>main.table.zoho.title}" level="H2" /> -->
 
                                 <ToolbarSpacer />
                                 <Input placeholder="Search Project ID" liveChange="onProductIDSearch" width="15%" >
