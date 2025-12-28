@@ -244,16 +244,10 @@ sap.ui.define(
 					isFilledMandatory = true;
 				if (oMainModel.getProperty("/zoho/zohoFilter/Projid")) {
 					aFilter.push(new sap.ui.model.Filter([new sap.ui.model.Filter("Projid", sap.ui.model.FilterOperator.EQ, oMainModel.getProperty("/zoho/zohoFilter/Projid"))], false));
-				} else {
-					isFilledMandatory = false;
-					oMainModel.setProperty("/zoho/zohoFilterFieldState/Projid", "Error");
 				}
 
 				if (oMainModel.getProperty("/zoho/zohoFilter/Oppurtunity")) {
 					aFilter.push(new sap.ui.model.Filter([new sap.ui.model.Filter("Oppu", sap.ui.model.FilterOperator.EQ, oMainModel.getProperty("/zoho/zohoFilter/Oppurtunity"))], false));
-				} else {
-					isFilledMandatory = false;
-					oMainModel.setProperty("/zoho/zohoFilterFieldState/Oppurtunity", "Error");
 				}
 
 				if (oMainModel.getProperty("/zoho/zohoFilter/Customer")) {
@@ -261,7 +255,19 @@ sap.ui.define(
 				}
 
 				if (oMainModel.getProperty("/zoho/zohoFilter/SalesOffice")) {
+					oMainModel.setProperty("/zoho/zohoFilterFieldState/SalesOffice", "None");
 					aFilter.push(new sap.ui.model.Filter([new sap.ui.model.Filter("Vkbur", sap.ui.model.FilterOperator.EQ, oMainModel.getProperty("/zoho/zohoFilter/SalesOffice"))], false));
+				} else {
+					isFilledMandatory = false;
+					oMainModel.setProperty("/zoho/zohoFilterFieldState/SalesOffice", "Error");
+				}
+
+				if (oMainModel.getProperty("/zoho/zohoFilter/Division")) {
+					oMainModel.setProperty("/zoho/zohoFilterFieldState/Division", "None");
+					aFilter.push(new sap.ui.model.Filter([new sap.ui.model.Filter("Spart", sap.ui.model.FilterOperator.EQ, oMainModel.getProperty("/zoho/zohoFilter/Division"))], false));
+				} else {
+					isFilledMandatory = false;
+					oMainModel.setProperty("/zoho/zohoFilterFieldState/Division", "Error");
 				}
 
 				var sPath = "/ET_ZDI_TP_OPPSet";
