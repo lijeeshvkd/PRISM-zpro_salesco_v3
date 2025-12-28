@@ -664,10 +664,66 @@
                 <fb:FilterBar id="ZohoTableFilter" persistencyKey="myPersKey" useToolbar="false" search="onZohoFiterSearch" showFilterConfiguration="false" >
                     <fb:filterGroupItems>
                         <fb:FilterGroupItem
+                            name="SalesOffice"
+                            label="{i18n.main>zoho.text.SalesOffice}"
+                            groupName="Group1"
+                            mandatory="true"
+                            visibleInFilterBar="true" >
+                            <fb:control>
+                                <Input
+                                    id="zohoSalesOfficeInput"
+                                    placeholder="{i18n.main>zoho.text.SalesOffice}"
+                                    showValueHelp="true"
+                                    valueHelpRequest="onSalesOfficeHelp"
+                                    value="{mainModel>/zoho/zohoFilter/SalesOffice}"
+                                    submit="onZohoFiterSearch"
+                                    textFormatMode="ValueKey"
+                                    showSuggestion="true"
+                                    showTableSuggestionValueHelp="false"
+                                    suggest=".onSuggest"
+                                    suggestionRows="{JSONModelForSuggest>/}"
+                                    suggestionItemSelected="onSalesOfficeSuggestionSelect"
+                                    valueState="{mainModel>/zoho/zohoFilterFieldState/SalesOffice}"
+                                    valueStateText="{i18n.main>zoho.filter.valuestate.SalesOffice}">
+                                    <suggestionColumns>
+                                        <Column popinDisplay="Inline" demandPopin="true">
+                                            <Label text="{i18n.main>zoho.text.SalesOfficeCode}"  />
+                                        </Column>
+                                        <Column popinDisplay="Inline" demandPopin="true" >
+                                            <Label text="{i18n.main>zoho.text.SalesOfficeName}" />
+                                        </Column>
+                                    </suggestionColumns>
+
+                                    <suggestionRows>
+                                        <ColumnListItem>
+                                            <Label text="{JSONModelForSuggest>DomvalueL}" />
+                                            <Label text="{JSONModelForSuggest>Ddtext}" />
+                                        </ColumnListItem>
+                                    </suggestionRows>
+                                </Input>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+                        <fb:FilterGroupItem
+                            name="Spart"
+                            label="{i18n.main>zoho.text.Division}"
+                            groupName="Group1"
+                            mandatory="true"
+                            visibleInFilterBar="true" >
+                            <fb:control>
+                                <Input id="zohoDivisionFilterInput"
+                                    placeholder="{i18n.main>zoho.text.Division}"
+                                    value="{mainModel>/zoho/zohoFilter/Division}"
+                                    valueState="{mainModel>/zoho/zohoFilterFieldState/Division}"
+                                    valueStateText="{i18n.main>zoho.filter.valuestate.Division}"
+                                    submit="onZohoFiterSearch" />
+                            </fb:control>
+                        </fb:FilterGroupItem>
+
+                        <fb:FilterGroupItem
                             name="Projid"
                             label="{i18n.main>zoho.text.Projid}"
                             groupName="Group1"
-                            mandatory="true"
+                            mandatory="false"
                             visibleInFilterBar="true" >
                             <fb:control>
                                 <Input id="zohoProjectIDInput"
@@ -682,17 +738,17 @@
                         
                         <fb:FilterGroupItem
                             name="Oppu"
-                            label="{i18n.main>zoho.text.Oppurtunity}"
+                            label="{i18n.main>zoho.text.Opportunity}"
                             groupName="Group1"
-                            mandatory="true"
+                            mandatory="false"
                             visibleInFilterBar="true" >
                             <fb:control>
                                 <Input id="zohoOppurtunityFilterInput"
-                                    placeholder="Oppurtunity"
+                                    placeholder="Opportunity"
                                     submit="onZohoFiterSearch"
                                     value="{mainModel>/zoho/zohoFilter/Oppurtunity}"
                                     valueState="{mainModel>/zoho/zohoFilterFieldState/Oppurtunity}"
-                                    valueStateText="{i18n.main>zoho.filter.valuestate.oppurtunity}"
+                                    valueStateText="{i18n.main>zoho.filter.valuestate.Opportunity}"
                                     change="onZohoFilterFieldChange" />
                             </fb:control>
                         </fb:FilterGroupItem>
@@ -737,56 +793,6 @@
                             </fb:control>
                         </fb:FilterGroupItem>
 
-                        <fb:FilterGroupItem
-                            name="SalesOffice"
-                            label="{i18n.main>zoho.text.SalesOffice}"
-                            groupName="Group1"
-                            mandatory="false"
-                            visibleInFilterBar="true" >
-                            <fb:control>
-                                <Input
-                                    id="zohoSalesOfficeInput"
-                                    placeholder="{i18n.main>zoho.text.SalesOffice}"
-                                    showValueHelp="true"
-                                    valueHelpRequest="onSalesOfficeHelp"
-                                    value="{mainModel>/zoho/zohoFilter/SalesOffice}"
-                                    submit="onZohoFiterSearch"
-                                    textFormatMode="ValueKey"
-                                    showSuggestion="true"
-                                    showTableSuggestionValueHelp="false"
-                                    suggest=".onSuggest"
-                                    suggestionRows="{JSONModelForSuggest>/}"
-                                    suggestionItemSelected="onSalesOfficeSuggestionSelect">
-                                    <suggestionColumns>
-                                        <Column popinDisplay="Inline" demandPopin="true">
-                                            <Label text="{i18n.main>zoho.text.SalesOfficeCode}"  />
-                                        </Column>
-                                        <Column popinDisplay="Inline" demandPopin="true" >
-                                            <Label text="{i18n.main>zoho.text.SalesOfficeName}" />
-                                        </Column>
-                                    </suggestionColumns>
-
-                                    <suggestionRows>
-                                        <ColumnListItem>
-                                            <Label text="{JSONModelForSuggest>DomvalueL}" />
-                                            <Label text="{JSONModelForSuggest>Ddtext}" />
-                                        </ColumnListItem>
-                                    </suggestionRows>
-                                </Input>
-                            </fb:control>
-                        </fb:FilterGroupItem>
-                        <fb:FilterGroupItem
-                            name="Spart"
-                            label="{i18n.main>zoho.text.Division}"
-                            groupName="Group1"
-                            mandatory="false"
-                            visibleInFilterBar="true" >
-                            <fb:control>
-                                <Input id="zohoDivisionFilterInput"
-                                    placeholder="{i18n.main>zoho.text.Division}"
-                                    submit="onZohoFiterSearch" />
-                            </fb:control>
-                        </fb:FilterGroupItem>
                     </fb:filterGroupItems>
                 </fb:FilterBar>
                 <Table:Table id="zohoTable" rows="{mainModel>/zoho/zohoData}" selectionMode="Single" rowSelectionChange="zohoTableSelectionChange" >
@@ -813,7 +819,7 @@
                             </Table:template>
                         </Table:Column>
                         <Table:Column id="zohoTableOppurtunity" sortProperty="Oppu" >
-                            <Label text="{i18n.main>zoho.text.Oppurtunity}" wrapping="true" />
+                            <Label text="{i18n.main>zoho.table.text.Opportunity}" wrapping="true" />
                             <Table:template>
                                 <Text text="{mainModel>Oppu}" wrapping="false" />
                             </Table:template>
@@ -839,7 +845,7 @@
                         <Table:Column id="zohoTableSalesOffice" sortProperty="Vkbur" >
                             <Label text="{i18n.main>zoho.text.SalesOffice}" wrapping="true" />
                             <Table:template>
-                                <Text text="{mainModel>Projid}" wrapping="false" />
+                                <Text text="{mainModel>Vkbur}" wrapping="false" />
                             </Table:template>
                         </Table:Column>
                     </Table:columns>
