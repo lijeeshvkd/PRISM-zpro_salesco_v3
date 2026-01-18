@@ -76,8 +76,7 @@
                         label="Sales Office"
                         groupName="Group1"
                         mandatory="true"
-                        visibleInFilterBar="true"
-                    >
+                        visibleInFilterBar="true">
                         <fb:control>
                             <Input
                                 id="id.SalesOffice.Input"
@@ -636,6 +635,13 @@
                         <Table:template>
                             <tnt:InfoLabel text="{ parts: ['ModelForTable>Status', 'ModelForTable>Erdat'], formatter: 'sap.formatter.getStatus' }"
                                 colorScheme="{ parts: ['ModelForTable>Status'], formatter: 'sap.formatter.getStatusColor' }" />
+                        </Table:template>
+                    </Table:Column>
+
+                    <Table:Column id="Actions" width="3.1rem" >
+                        <Label text="" />
+                        <Table:template>
+                            <Button icon="sap-icon://create-form" type="Transparent" press="onREFPress" tooltip="Create with Reference" />
                         </Table:template>
                     </Table:Column>
 

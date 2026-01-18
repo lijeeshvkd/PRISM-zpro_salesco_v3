@@ -112,6 +112,24 @@ sap.ui.define(
 				});
 			},
 
+			_readPAFHeaderWithItems: function (sPafno, fnReturn) {
+				var sPath = `/ET_PAF_REF_HEADERSet('${sPafno}')`
+				this.getView().setBusy(true);
+				this.getView().getModel().read(sPath, {
+					urlParameters: {
+						$expand: "ET_PAF_REF_ITEMSet",
+					},
+					success: function (Data) {
+						fnReturn(Data);
+						this.getView().setBusy(false);
+					}.bind(this),
+					error: function (oError) {
+						fnReturn(null);
+						this.getView().setBusy(false);
+					}.bind(this)
+				});
+			},
+
 			_itemsMap: function (aItems) {
 				var oItem = {},
 					aResutItems = [];
@@ -223,6 +241,38 @@ sap.ui.define(
 								if (oData && oData.ET_OP_ITEMSet && oData.ET_OP_ITEMSet.results.length) {
 									bIsItemAvail = true;
 									var aPayloadItems = this._itemsMap(oData.ET_OP_ITEMSet.results);
+									dataModelPayload.header.ET_SALES_COORD_ISET.results = aPayloadItems;
+								} else {
+									dataModelPayload.header.ET_SALES_COORD_ISET.results.push(dataModelPayload.item);
+								}
+							}
+
+							this.getView().getModel("JSONModelPayload").setData(dataModelPayload.header);
+							if (bIsItemAvail) {
+								validation.headerPayloadValidation(this, true);
+							}
+						}.bind(this));
+
+					} else if (oArguments.Pafno) {
+						var bIsItemAvail = false;
+						this._readPAFHeaderWithItems(oArguments.Pafno, function (oData) {
+							if (oData) {
+								dataModelPayload.header.Kunnr = oData.Kunnr || '';
+								dataModelPayload.header.Name = oData.Name || '';
+								dataModelPayload.header.Oppu = oData.Oppu || '';
+								dataModelPayload.header.Vkbur = oData.Vkbur.trim() || '';
+								dataModelPayload.header.Soname = oData.Soname || '';
+								dataModelPayload.header.Validity = oData.Validity || '';
+								dataModelPayload.header.Spart = oData.Spart || '';
+								dataModelPayload.header.Vtweg = oData.Vtweg || '';
+								dataModelPayload.header.Zterm = oData.Zterm || '';
+								dataModelPayload.header.Specid = oData.Specid || '';
+								dataModelPayload.header.Spec = oData.Spec || '';
+								dataModelPayload.header.Proj = oData.Proj || '';
+
+								if (oData && oData.ET_PAF_REF_ITEMSet && oData.ET_PAF_REF_ITEMSet.results.length) {
+									bIsItemAvail = true;
+									var aPayloadItems = this._itemsMap(oData.ET_PAF_REF_ITEMSet.results);
 									dataModelPayload.header.ET_SALES_COORD_ISET.results = aPayloadItems;
 								} else {
 									dataModelPayload.header.ET_SALES_COORD_ISET.results.push(dataModelPayload.item);
