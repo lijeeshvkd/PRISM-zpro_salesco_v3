@@ -641,7 +641,7 @@
                     <Table:Column id="Actions" width="3.1rem" >
                         <Label text="" />
                         <Table:template>
-                            <Button icon="sap-icon://copy" type="Transparent" press="onREFPress" tooltip="Create with Reference" />
+                            <Button icon="sap-icon://copy" type="Transparent" press="onCreateWithREFPress" tooltip="Create with Reference" />
                         </Table:template>
                     </Table:Column>
 

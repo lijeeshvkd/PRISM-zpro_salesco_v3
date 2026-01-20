@@ -620,7 +620,7 @@ sap.ui.define(
 			},
 
 			// CREATE WITH REFRENCE TO REQUESTS TAB CHANGES STARTS //
-			onREFPress: function (oEvent) {
+			onCreateWithREFPress: function (oEvent) {
 
 				var oSeletedItem = oEvent.getSource().getBindingContext("ModelForTable").getObject(),
 					oGlobalModel = this.getView().getModel("globalModel"),
