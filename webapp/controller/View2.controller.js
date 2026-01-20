@@ -92,6 +92,11 @@ sap.ui.define(
 				this.getOwnerComponent().getModel().setSizeLimit(1000);
 
 				this.getView().setModel(new JSONModel({}), "JSONModelPayload");
+
+				var oProperties = {
+					PafnoRef: "",
+				};
+				this.getView().setModel(new JSONModel(oProperties), "viewModel");
 			},
 
 			_readOPHeaderWithItems: function (sOppu, fnReturn) {
@@ -254,6 +259,7 @@ sap.ui.define(
 						}.bind(this));
 
 					} else if (oArguments.Pafno) {
+						this.getView().getModel("viewModel").setProperty("/PafnoRef", oArguments.Pafno);
 						var bIsItemAvail = false;
 						this._readPAFHeaderWithItems(oArguments.Pafno, function (oData) {
 							if (oData) {
@@ -1285,6 +1291,7 @@ sap.ui.define(
 					var data = this.getView().getModel("JSONModelPayload").getData();
 					data.Pafvto = new Date(data.Pafvto);
 					data.Pafvfrm = new Date(data.Pafvfrm);
+					data.PafnoRef = this.getView().getModel("viewModel").getProperty("/PafnoRef") || "";
 					var aItems = data.ET_SALES_COORD_ISET.results;
 					for (let index = 0; index < aItems.length; index++) {
 						for (const key in aItems[index]) {

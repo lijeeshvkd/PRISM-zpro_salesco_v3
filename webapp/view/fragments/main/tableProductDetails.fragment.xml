@@ -581,7 +581,7 @@
                         </Table:template>
                     </Table:Column>
                    
-                    <Table:Column id="Kunnr" sortProperty="Kunnr" >
+                    <Table:Column id="Kunnr" sortProperty="Kunnr" width="7rem" >
                         <Label text="{i18n.main>main.table.column.text.custNo}" wrapping="true" />
                         <Table:template>
                             <Text text="{ModelForTable>Kunnr}" />
@@ -616,14 +616,14 @@
                         </Table:template>
                     </Table:Column>
 
-                    <Table:Column id="Erdat" sortProperty="Erdat" >
+                    <Table:Column id="Erdat" sortProperty="Erdat" width="5.5rem" >
                         <Label text="{i18n.main>main.table.column.text.requestedDate}" wrapping="true" />
                         <Table:template>
                             <Text text="{ parts: ['ModelForTable>Erdat'], formatter: 'sap.formatter.getFormattedDate' }" />
                         </Table:template>
                     </Table:Column>
 
-                    <Table:Column id="Pendingat" sortProperty="Pendingat">
+                    <Table:Column id="Pendingat" sortProperty="Pendingat" width="4.3rem" >
                         <Label text="{i18n.main>main.table.column.text.pending}" wrapping="true" />
                         <Table:template>
                             <Text text="{ModelForTable>Role}" />
@@ -641,7 +641,7 @@
                     <Table:Column id="Actions" width="3.1rem" >
                         <Label text="" />
                         <Table:template>
-                            <Button icon="sap-icon://create-form" type="Transparent" press="onREFPress" tooltip="Create with Reference" />
+                            <Button icon="sap-icon://copy" type="Transparent" press="onREFPress" tooltip="Create with Reference" />
                         </Table:template>
                     </Table:Column>
 
