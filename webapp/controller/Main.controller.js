@@ -619,6 +619,22 @@ sap.ui.define(
 				this.oRouter.navTo("page2", urlParams);
 			},
 
+			// CREATE WITH REFRENCE TO REQUESTS TAB CHANGES STARTS //
+			onCreateWithREFPress: function (oEvent) {
+
+				var oSeletedItem = oEvent.getSource().getBindingContext("ModelForTable").getObject(),
+					oGlobalModel = this.getView().getModel("globalModel"),
+					urlParams = {
+						ID: "null",
+						Pafno: oSeletedItem.Pafno
+					};
+					
+				oGlobalModel.setProperty("/selectedREFPAF", oSeletedItem);
+				this.oRouter = this.getOwnerComponent().getRouter();
+				this.oRouter.navTo("page2", urlParams);
+			},
+			// CREATE WITH REFRENCE TO REQUESTS TAB CHANGES ENDS //
+
 			zohoTableSelectionChange: function() {
 				var oGlobalModel = this.getView().getModel("globalModel");
 				oGlobalModel.setProperty("/selectedZoho", {});
