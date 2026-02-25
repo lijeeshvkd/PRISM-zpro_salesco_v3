@@ -1072,7 +1072,7 @@ sap.ui.define(
 			},
 			//End: Sales Office
 
-			// Start: Material Freight Group
+			// Start: s
 
 			// on Value Help(F4)
 			onMaterialFreightGroupsHelp: function (oEvent) {
@@ -1116,7 +1116,7 @@ sap.ui.define(
 				materialFreightGroup.onMaterialFreightGroupsLiveChange(oEvent);
 			},
 
-			// End: Material Freight Group
+			// End: s
 
 			// Start: Designs
 
@@ -1155,7 +1155,7 @@ sap.ui.define(
 					that.oFragmentDesign.open();
 
 				} else {
-					MessageBox.error("Please select 'Material Freight Group' first");
+					MessageBox.error("Please select 's' first");
 				}
 			},
 			// on F4 search/liveChange
@@ -2389,7 +2389,7 @@ sap.ui.define(
 										],
 										false
 									),
-									sMessage = "Entered Material Freight Group is wrong";
+									sMessage = "Entered s is wrong";
 								aFilters.push(oFilterDomname);
 								aFilters.push(oFilterDomname1);
 								aFilters.push(oFilterDomname2);
@@ -2549,6 +2549,7 @@ sap.ui.define(
 					oFileUploader.clear();
 				});
 			},
+				
 			//End: Upload Excel - File Uploader
 
 			// Start: Download Excel
@@ -2590,6 +2591,7 @@ sap.ui.define(
 					oSheet.destroy();
 				});
 			},
+
 			createColumnConfig: function () {
 				var aCols = [];
 				aCols.push({
@@ -2810,8 +2812,151 @@ sap.ui.define(
 					reader.readAsBinaryString(file);
 				}
 			},
+			
 			// End: newUploader001
-		}
-		);
+
+			// ZOHO: IMPORT and EXPORT
+
+			onExportProducts: function () {
+				var aCols, oRowBinding, oSettings, oSheet, oTable;
+
+				if (!this._oTable) {
+					this._oTable = this.byId(
+						sap.ui.core.Fragment.createId(
+							"idV2FragAddPrdDetails",
+							"idV2TblProducts"
+						)
+					);
+				}
+
+				oTable = this._oTable;
+				oRowBinding = this.getView().getModel("JSONModelPayload").getData().ET_SALES_COORD_ISET.results;
+				aCols = this.createProductColumnConfig();
+
+				oSettings = {
+					workbook: {
+						columns: aCols,
+						hierarchyLevel: "Level",
+						textAlign: "Left",
+						wrap: true,
+						context: {
+							sheetName: "Product Details",
+						},
+					},
+					dataSource: oRowBinding,
+					count: 0,
+					fileName: "Product Details.xlsx",
+					worker: false, // We need to disable worker because we are using a MockServer as OData Service
+				};
+
+				oSheet = new Spreadsheet(oSettings);
+				oSheet.build().finally(function () {
+					oSheet.destroy();
+				});
+			},
+
+			createProductColumnConfig: function () {
+				var aCols = [];
+				aCols.push({
+					property: "Mfrgr",
+					label: "Material Freight Group",
+					type: EdmType.String,
+					editable: true
+				});
+
+				aCols.push({
+					property: "Mvgr2",
+					label: "Design",
+					type: EdmType.String,
+					editable: true
+				});
+
+				aCols.push({
+					property: "Werks",
+					label: "Supplying Plant",
+					type: EdmType.String,
+					editable: true
+				});
+
+				aCols.push({
+					property: "Prodh1",
+					label: "Manufacturing Plant",
+					type: EdmType.String,
+					editable: true
+				});
+
+				aCols.push({
+					property: "CurVolFt",
+					label: "Current Volume(Sqft)",
+					type: EdmType.String,
+					editable: true
+				});
+
+				aCols.push({
+					property: "TotalVol",
+					label: "Total Volume(Sqft)",
+					type: EdmType.String,
+					editable: true
+				});
+
+				aCols.push({
+					property: "Zzprodh4",
+					label: "Quality",
+					type: EdmType.String,
+					editable: true
+				});
+
+				aCols.push({
+					property: "Mvgr5",
+					label: "Part A/B/L",
+					type: EdmType.String,
+					editable: true
+				});
+
+				aCols.push({
+					property: "Isexdep",
+					label: "Ex Factory/Depot",
+					type: EdmType.String,
+					editable: true
+				});
+
+				aCols.push({
+					property: "Disc",
+					label: "Discount(%)",
+					type: EdmType.String,
+					editable: true
+				});
+
+				aCols.push({
+					property: "Commboxp",
+					label: "ORC(%)",
+					type: EdmType.String,
+					editable: true
+				});
+
+				aCols.push({
+					property: "Frgtsqft",
+					label: "Freight(Per SqFt)",
+					type: EdmType.String,
+					editable: true
+				});
+
+				aCols.push({
+					property: "Compname",
+					label: "Competitor Name",
+					type: EdmType.String,
+					editable: true
+				});
+
+				aCols.push({
+					property: "Complanprice",
+					label: "Competitor Landed Price",
+					type: EdmType.String,
+					editable: true
+				});
+
+				return aCols;
+			},
+		});
 	}
 );
