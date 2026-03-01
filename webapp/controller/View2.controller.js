@@ -2153,6 +2153,60 @@ sap.ui.define(
 					});
 				oEvent.getSource().getParent().getParent().destroy();
 			},
+
+			onProductUpload: function (oEvent) {
+				var oFileUploader = oEvent.getSource();
+				var oFile = oEvent.getParameter("files") && oEvent.getParameter("files")[0]
+				if (oFile) {
+					var reader = new FileReader();
+					reader.onload = function (e) {
+						var data = e.target.result;
+						var workbook = XLSX.read(data, { type: "binary" });
+						var sheetName = workbook.SheetNames[0];
+						var sheetData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
+						// this.getView().getModel("LocalJSONModelForProduct").setData(sheetData);
+						this._updateProductList(sheetData);
+					}.bind(this);
+					reader.readAsBinaryString(oFile);
+				}
+			},
+
+			_updateProductList: function (sheetData) {
+				var oModel = this.getView().getModel("JSONModelPayload");
+				var aProductList = this._productPropertyMapping(sheetData);
+				var existingProductList = oModel.getProperty("/ET_SALES_COORD_ISET/results") || [];
+				existingProductList.push(...aProductList);
+				oModel.setProperty("/ET_SALES_COORD_ISET/results", existingProductList);
+				oModel.refresh(true);
+				MessageBox.success("Product details uploaded successfully", {
+					actions: [sap.m.MessageBox.Action.OK],
+					onClose: function (oAction) { },
+				});
+			},
+
+			_productPropertyMapping: function (sheetData) {
+				var aProductList = [];
+				sheetData.forEach(function (oRow) {
+					var oProduct = {
+						Complanprice: oRow["Competitor Landed Price"] || "",
+						CurVolFt: oRow["Current Volume(Sqft)"] || "",
+						Mvgr2: oRow["Design"] || "",
+						Disc: oRow["Discount(%)"] || "",
+						Isexdep: oRow["Ex Factory/Depot"] || "",
+						Frgtsqft: oRow["Freight(Per SqFt)"] || "",
+						Prodh1: oRow["Manufacturing Plant"] || "",
+						Mfrgr: oRow["Material Freight Group"] || "",
+						Commboxp: oRow["ORC(%)"] || "",
+						Mvgr5: oRow["Part A/B/L"] || "",
+						Zzprodh4: oRow["Quality"] || "",
+						Werks: oRow["Supplying Plant"] || "",
+						TotalVol: oRow["Total Volume(Sqft)"] || ""
+					};
+					aProductList.push(oProduct);
+				});
+				return aProductList;
+
+			},
 			//End: Upload, View and Download Attachment
 
 			// Start: Upload Excel

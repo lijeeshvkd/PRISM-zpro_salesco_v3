@@ -29,7 +29,7 @@
                 fileType="XLSX,xlsx"
                 icon="sap-icon://upload"
                 iconFirst="true"
-                change="onUpload"
+                change="onProductUpload"
                 tooltip="Excel Upload"
                 visible="{GlobalEditableModel>/Editable}" />
 
