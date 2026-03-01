@@ -801,6 +801,7 @@
 
                     </fb:filterGroupItems>
                 </fb:FilterBar>
+                
                 <Table:Table id="zohoTable" rows="{mainModel>/zoho/zohoData}" selectionMode="Single" rowSelectionChange="zohoTableSelectionChange" >
                     <Table:extension>
                         <OverflowToolbar design="Transparent" width="100%">
@@ -852,6 +853,12 @@
                             <Label text="{i18n.main>zoho.text.SalesOffice}" wrapping="true" />
                             <Table:template>
                                 <Text text="{mainModel>Vkbur}" wrapping="false" />
+                            </Table:template>
+                        </Table:Column>
+                        <Table:Column id="zohoActions" width="3.1rem" >
+                            <Label text="" />
+                            <Table:template>
+                                <Button icon="sap-icon://copy" type="Transparent" press="onZohoCreateWithREFPress" tooltip="Create with Reference" />
                             </Table:template>
                         </Table:Column>
                     </Table:columns>

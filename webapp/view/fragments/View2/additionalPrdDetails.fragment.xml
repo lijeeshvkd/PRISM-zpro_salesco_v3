@@ -5,39 +5,41 @@
     xmlns:u="sap.ui.unified"
 >
     <VBox id="idV2VB">
-        <FlexBox
-            id="idV2FB"
-            direction="RowReverse"
-            alignItems="Start"
-        >
-            <Button
-                icon="sap-icon://cause"
-                text="{i18nV2>view2.flexBox.button.Generate}"
-                press="onGenerate"
-                type="Attention"
-                visible="{GlobalEditableModel>/Editable}"
-            />
-            <!-- <u:FileUploader
-                id="FileUploaderId"
-                buttonText="Excel Upload"
-                sameFilenameAllowed="true"
-                iconOnly="false"
-                buttonOnly="true"
-                fileType="XLSX,xlsx"
-                icon="sap-icon://browse-folder"
-                iconFirst="true"
-                change="onUpload"
-                tooltip="Excel Upload"
-                visible="{GlobalEditableModel>/Editable}"
-            /> -->
+        <FlexBox id="idV2FB" direction="RowReverse" alignItems="Start" >
+            <Button icon="sap-icon://cause" class="sapUiTinyMarginBegin" 
+                text="{i18nV2>view2.flexBox.button.Generate}" press="onGenerate"
+                type="Attention" visible="{GlobalEditableModel>/Editable}" />
+            
             <Button
                 id="idV2BtnAdd"
+                class="sapUiTinyMarginBegin"
                 text="{i18nV2>view2.flexBox.button.AddMoreProducts}"
                 icon="sap-icon://add"
                 press="onAddRow"
                 type="Accept"
-                visible="{GlobalEditableModel>/Editable}"
-            />
+                visible="{GlobalEditableModel>/Editable}" />
+
+            <u:FileUploader
+                id="FileUploaderId"
+                class="sapUiTinyMarginBegin"
+                buttonText="Excel Upload"
+                sameFilenameAllowed="true"
+                iconOnly="true"
+                buttonOnly="true"
+                fileType="XLSX,xlsx"
+                icon="sap-icon://upload"
+                iconFirst="true"
+                change="onProductUpload"
+                tooltip="Excel Upload"
+                visible="{GlobalEditableModel>/Editable}" />
+
+            <Button
+                id="idProductExportBtn"
+                iconOnly="true"
+                icon="sap-icon://download"
+                press="onExportProducts"
+                type="Default"
+                visible="{GlobalEditableModel>/Editable}" />
         </FlexBox>
 
         <ScrollContainer

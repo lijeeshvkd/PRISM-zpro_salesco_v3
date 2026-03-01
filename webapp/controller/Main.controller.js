@@ -635,6 +635,23 @@ sap.ui.define(
 			},
 			// CREATE WITH REFRENCE TO REQUESTS TAB CHANGES ENDS //
 
+			// ZOHO CREATE WITH REFRENCE TO REQUESTS TAB CHANGES STARTS //
+			onZohoCreateWithREFPress: function (oEvent) {
+				var oSeletedItem = {},
+					oGlobalModel = this.getView().getModel("globalModel"),
+					urlParams = {
+						ID: "null"
+					};
+
+				oSeletedItem = oEvent.getSource().getBindingContext("mainModel").getObject();
+				urlParams.Oppu = oSeletedItem.Oppu;
+					
+				oGlobalModel.setProperty("/selectedZoho", oSeletedItem);
+				this.oRouter = this.getOwnerComponent().getRouter();
+				this.oRouter.navTo("page2", urlParams);
+			},
+			// ZOHO CREATE WITH REFRENCE TO REQUESTS TAB CHANGES ENDS //
+
 			zohoTableSelectionChange: function() {
 				var oGlobalModel = this.getView().getModel("globalModel");
 				oGlobalModel.setProperty("/selectedZoho", {});
