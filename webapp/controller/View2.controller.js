@@ -2175,7 +2175,8 @@ sap.ui.define(
 				var oModel = this.getView().getModel("JSONModelPayload");
 				var aProductList = this._productPropertyMapping(sheetData);
 				var existingProductList = oModel.getProperty("/ET_SALES_COORD_ISET/results") || [];
-				existingProductList.push(...aProductList);
+				// existingProductList.push(...aProductList);
+				existingProductList = aProductList;
 				oModel.setProperty("/ET_SALES_COORD_ISET/results", existingProductList);
 				oModel.refresh(true);
 				MessageBox.success("Product details uploaded successfully", {
@@ -2200,7 +2201,8 @@ sap.ui.define(
 						Mvgr5: oRow["Part A/B/L"] || "",
 						Zzprodh4: oRow["Quality"] || "",
 						Werks: oRow["Supplying Plant"] || "",
-						TotalVol: oRow["Total Volume(Sqft)"] || ""
+						TotalVol: oRow["Total Volume(Sqft)"] || "",
+						Compname: oRow["Competitor Name"] || ""
 					};
 					aProductList.push(oProduct);
 				});
