@@ -228,7 +228,7 @@
                             required="true"
                             wrapping="true"
                             id="idV2TxtTblClmDisPer"
-                            text="{=${JSONModelPayload>/Vtweg} === '15' || ${JSONModelPayload>/Vtweg} === '19' || ${JSONModelPayload>/Vtweg} === '25' || ${JSONModelPayload>/Vtweg} === '29'? ${i18nV2>view2.table.column.text.onIncDisountPercentage}:${i18nV2>view2.table.column.text.onIncDisountAmount}}"
+                            text="{=${JSONModelPayload>/Vtweg} === '15' || ${JSONModelPayload>/Vtweg} === '19' || ${JSONModelPayload>/Vtweg} === '25' || ${JSONModelPayload>/Vtweg} === '29' || ${JSONModelPayload>/Vtweg} === '35'? ${i18nV2>view2.table.column.text.onIncDisountPercentage}:${i18nV2>view2.table.column.text.onIncDisountAmount}}"
                         />
                     </Column>
                     <Column
@@ -265,7 +265,7 @@
                         demandPopin="true"
                         hAlign="Center"
                         width="10rem"
-                        visible="{=${JSONModelPayload>/Vtweg} === '15' || ${JSONModelPayload>/Vtweg} === '19' || ${JSONModelPayload>/Vtweg} === '25' || ${JSONModelPayload>/Vtweg} === '29'? ${JSONModelPayload>/Vtweg} === '' ? true:false :true}"
+                        visible="{=${JSONModelPayload>/Vtweg} === '15' || ${JSONModelPayload>/Vtweg} === '19' || ${JSONModelPayload>/Vtweg} === '25' || ${JSONModelPayload>/Vtweg} === '29' || ${JSONModelPayload>/Vtweg} === '35'? ${JSONModelPayload>/Vtweg} === '' ? true:false :true}"
                     >
                         <Label
                             id="idV2TxtTblClmORCEnt"
@@ -279,7 +279,7 @@
                         demandPopin="true"
                         hAlign="Center"
                         width="10rem"
-                        visible="{=${JSONModelPayload>/Vtweg} === '15' || ${JSONModelPayload>/Vtweg} === '19' || ${JSONModelPayload>/Vtweg} === '25' || ${JSONModelPayload>/Vtweg} === '29'?true:${JSONModelPayload>/Vtweg} === '' ? true:false}"
+                        visible="{=${JSONModelPayload>/Vtweg} === '15' || ${JSONModelPayload>/Vtweg} === '19' || ${JSONModelPayload>/Vtweg} === '25' || ${JSONModelPayload>/Vtweg} === '29' || ${JSONModelPayload>/Vtweg} === '35'?true:${JSONModelPayload>/Vtweg} === '' ? true:false}"
                     >
                         <Label
                             id="idV2TxtTblClmORCPer"

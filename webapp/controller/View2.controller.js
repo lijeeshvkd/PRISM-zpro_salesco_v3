@@ -377,7 +377,7 @@ sap.ui.define(
 									}
 								}
 								// Disc and Discb  conversion
-								if (Data.Vtweg === "15" || Data.Vtweg === "19" || Data.Vtweg === "25" || Data.Vtweg === "29") {
+								if (Data.Vtweg === "15" || Data.Vtweg === "19" || Data.Vtweg === "25" || Data.Vtweg === "29" || Data.Vtweg === "35") {
 								} else {
 									for (var i = 0; i < nLen; i++) {
 										aTableItems[i].Disc = aTableItems[i].Discb;
@@ -798,7 +798,7 @@ sap.ui.define(
 					oEvent.getSource().setValue("");
 				}
 				var Vtweg = this.getView().getModel("JSONModelPayload").getProperty("/Vtweg");
-				if (Vtweg === "15" || Vtweg === "19" || Vtweg === "25" || Vtweg === "29") {
+				if (Vtweg === "15" || Vtweg === "19" || Vtweg === "25" || Vtweg === "29" || Vtweg === "35") {
 					if (value > 100) {
 						MessageBox.error("Percentage value not correct");
 						oEvent.getSource().setValue("");
@@ -822,7 +822,7 @@ sap.ui.define(
 					oEvent.getSource().setValue("");
 				}
 				var Vtweg = this.getView().getModel("JSONModelPayload").getProperty("/Vtweg");
-				if (Vtweg === "15" || Vtweg === "19" || Vtweg === "25" || Vtweg === "29") {
+				if (Vtweg === "15" || Vtweg === "19" || Vtweg === "25" || Vtweg === "29" || Vtweg === "35") {
 					if (value > 100) {
 						MessageBox.error("Percentage value not correct");
 						oEvent.getSource().setValue("");
@@ -1329,7 +1329,7 @@ sap.ui.define(
 							}
 						}
 						var Vtweg = this.getView().getModel("JSONModelPayload").getProperty("/Vtweg");
-						if (Vtweg === "15" || Vtweg === "19" || Vtweg === "25" || Vtweg === "29") {
+						if (Vtweg === "15" || Vtweg === "19" || Vtweg === "25" || Vtweg === "29" || Vtweg === "35") {
 
 						} else {
 							for (var i = 0; i < nLen; i++) {
@@ -1395,7 +1395,7 @@ sap.ui.define(
 												}
 											}
 											// Disc and Discb  conversion
-											if (oData.Vtweg === "15" || oData.Vtweg === "19" || oData.Vtweg === "25" || oData.Vtweg === "29") {
+											if (oData.Vtweg === "15" || oData.Vtweg === "19" || oData.Vtweg === "25" || oData.Vtweg === "29" || oData.Vtweg === "35") {
 											} else {
 												var aTableItems = oData.ET_SALES_COORD_ISET.results;
 												var nLen = aTableItems.length;
@@ -1483,7 +1483,7 @@ sap.ui.define(
 							}
 						}
 						var Vtweg = this.getView().getModel("JSONModelPayload").getProperty("/Vtweg");
-						if (Vtweg === "15" || Vtweg === "19" || Vtweg === "25" || Vtweg === "29") {
+						if (Vtweg === "15" || Vtweg === "19" || Vtweg === "25" || Vtweg === "29" || Vtweg === "35") {
 						} else {
 							for (var i = 0; i < nLen; i++) {
 								aTableItems[i].Discb = aTableItems[i].Disc;
@@ -1691,7 +1691,7 @@ sap.ui.define(
 										}
 										// Disc and Discb convertion
 										var Vtweg = this.getView().getModel("JSONModelPayload").getProperty("/Vtweg");
-										if (Vtweg === "15" || Vtweg === "19" || Vtweg === "25" || Vtweg === "29") {
+										if (Vtweg === "15" || Vtweg === "19" || Vtweg === "25" || Vtweg === "29" || Vtweg === "35") {
 										} else {
 											for (var i = 0; i < nLen; i++) {
 												aTableItems[i].Discb = aTableItems[i].Disc;
@@ -1716,7 +1716,7 @@ sap.ui.define(
 													}
 												}
 												// Disc and Discb  conversion
-												if (oData.Vtweg === "15" || oData.Vtweg === "19" || oData.Vtweg === "25" || oData.Vtweg === "29") {
+												if (oData.Vtweg === "15" || oData.Vtweg === "19" || oData.Vtweg === "25" || oData.Vtweg === "29" || oData.Vtweg === "35") {
 												} else {
 													for (var i = 0; i < nLen; i++) {
 														aTableItems[i].Disc = aTableItems[i].Discb;
@@ -1850,7 +1850,7 @@ sap.ui.define(
 					var Vtweg = this.getView()
 						.getModel("JSONModelPayload")
 						.getProperty("/Vtweg")
-					if (Vtweg !== "15" || Vtweg !== "19" || Vtweg !== "25" || Vtweg !== "29") {
+					if (Vtweg !== "15" || Vtweg !== "19" || Vtweg !== "25" || Vtweg !== "29" || Vtweg !== "35") {
 						vInvoiceDiscount =
 							vInvoiceDiscount +
 							Number(aItemsData[index].Disc) *
@@ -1866,7 +1866,7 @@ sap.ui.define(
 						vInvoiceType = "%";
 					}
 					var Vtweg = this.getView().getModel("JSONModelPayload").getProperty("/Vtweg");
-					if (Vtweg === "15" || Vtweg === "19" || Vtweg === "25" || Vtweg === "29") {
+					if (Vtweg === "15" || Vtweg === "19" || Vtweg === "25" || Vtweg === "29" || Vtweg === "35") {
 						vOrc =
 							vOrc +
 							(Number(aItemsData[index].Commboxp) *
@@ -2323,7 +2323,7 @@ sap.ui.define(
 									}
 
 									oTab.Disc = excelData[i].On_Invoice_Discount;
-									if (excelData[0].Distribution_Channel === "15" || excelData[0].Distribution_Channel === "19" || excelData[0].Distribution_Channel === "25" || excelData[0].Distribution_Channel === "29") {
+									if (excelData[0].Distribution_Channel === "15" || excelData[0].Distribution_Channel === "19" || excelData[0].Distribution_Channel === "25" || excelData[0].Distribution_Channel === "29" || excelData[0].Distribution_Channel === "35") {
 										oTab.Commboxp = excelData[i].ORC;
 									} else {
 										oTab.Commbox = excelData[i].ORC;
@@ -2496,7 +2496,7 @@ sap.ui.define(
 				var Vtweg = this.getView()
 					.getModel("JSONModelPayload")
 					.getProperty("/Vtweg");
-				if (Vtweg === "15" || Vtweg === "19" || Vtweg === "25" || Vtweg === "29") {
+				if (Vtweg === "15" || Vtweg === "19" || Vtweg === "25" || Vtweg === "29" || Vtweg === "35") {
 					this.byId(
 						sap.ui.core.Fragment.createId("idV2FragGenInfo", "idV2LblPayTerm")
 					).setRequired(true);
