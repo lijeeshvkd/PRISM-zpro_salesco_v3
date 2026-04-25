@@ -595,7 +595,7 @@
                         </Table:template>
                     </Table:Column>
 
-                    <Table:Column id="Vtweg" sortProperty="Vtweg" >
+                    <Table:Column id="Vtweg" sortProperty="Vtweg" width="8rem" >
                         <Label text="{i18n.main>main.table.column.text.typeOfOrder}" wrapping="true" />
                         <Table:template>
                             <Text text="{path:'ModelForTable>Vtweg',  formatter:'sap.formatter.showOrderType'}" />
