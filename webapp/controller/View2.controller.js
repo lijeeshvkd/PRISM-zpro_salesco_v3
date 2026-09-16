@@ -2206,7 +2206,8 @@ sap.ui.define(
 						Zzprodh4: oRow["Quality"] || "",
 						Werks: oRow["Supplying Plant"] || "",
 						TotalVol: oRow["Total Volume(Sqft)"] || "",
-						Compname: oRow["Competitor Name"] || ""
+						Compname: oRow["Competitor Name"] || "",
+						Loekz: false,
 					};
 					aProductList.push(oProduct);
 				});
@@ -2336,6 +2337,7 @@ sap.ui.define(
 									oTab.Compname = excelData[i].Competitor_Name;
 									oTab.Complanprice = excelData[i].Competitor_Landed_Price;
 									oTab.Sbremark = excelData[i].Remark;
+									oTab.Loekz = false;
 									payload.ET_SALES_COORD_ISET.results.push(oTab);
 								}
 							}
