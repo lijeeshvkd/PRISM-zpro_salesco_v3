@@ -29,7 +29,8 @@ sap.ui.define(
 		"sap/ui/core/util/ExportTypeCSV",
 		"sap/ui/export/library",
 		"sap/ui/export/Spreadsheet",
-		"sap/ui/unified/FileUploader"
+		"sap/ui/unified/FileUploader",
+		"zpj/pro/sk/sd/salesco/zprosalesco/model/formatter"
 	],
 	/**
 	 * @param {typeof sap.ui.core.mvc.Controller} Controller
@@ -37,11 +38,12 @@ sap.ui.define(
 	function (
 		Controller, JSONModel, IconPool, Icon, Link, MessageItem, MessageView, Button, Bar, Title, Popover, MessageBox, valueHelps, validation, salesOffice, customerCode,
 		materialFreightGroup, Designs, supplyPlant, manufacturingPlant, part, quality, PDFViewer, Fragment, DateFormat, MessageToast, ExportTypeCSV, exportLibrary,
-		Spreadsheet, FileUploader
+		Spreadsheet, FileUploader, formatter
 	) {
 		"use strict";
 		var EdmType = exportLibrary.EdmType;
 		return Controller.extend("zpj.pro.sk.sd.salesco.zprosalesco.controller.View2", {
+			formatter: formatter,
 			onInit: function () {
 
 				this.vTemp = 1;
@@ -714,7 +716,8 @@ sap.ui.define(
 					"Sbremark": null,
 					"Zzprodh4": "",
 					"Mvgr5": "",
-					"Isexdep": ""
+					"Isexdep": "",
+    				"Loekz": false
 				}
 				this.getView().getModel("payload").setProperty("/header", oRequestPayloadHeader);
 				this.getView().getModel("payload").setProperty("/item", oRequestPayloadItem);
@@ -931,6 +934,7 @@ sap.ui.define(
 							Zzprodh4: "",
 							Mvgr5: "",
 							Isexdep: "",
+							Loekz: false
 						});
 
 						this.getView()

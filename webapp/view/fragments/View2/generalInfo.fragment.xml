@@ -2,6 +2,7 @@
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:form="sap.ui.layout.form"
+    xmlns:tnt="sap.tnt"
 >
     <form:SimpleForm
         id="idV2SF_GenInfo"
@@ -202,6 +203,9 @@
                 valueStateText="Enter {i18nV2>view2.simpleForm.label.validDays}"
              
             /> -->
+
+            <Label text="Category" />
+            <tnt:InfoLabel width="90px" renderMode="Loose" text="{ parts: ['JSONModelPayload>/Category'], formatter: 'sap.formatter.getCategoryStatusText' }" colorScheme="{ parts: ['JSONModelPayload>/Category'], formatter: 'sap.formatter.getCategoryStatusColor' }" />
 
             <core:Title id="idV2T2" />
             <Label
